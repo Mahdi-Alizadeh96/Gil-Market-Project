@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <!-- meta tags -->
+    <meta name="description" content="بازار کالای دیجیتال گیلان">
+    <meta name="keywords" content="تگ هایی مربوط به محصول">
+    <meta name="author" content="UZ Group">
+    <!-- og -->
+    <meta property="og:title" content="نام محصول"/>
+    <meta property="og:url" content="http://GilMarket.ir/"/>
+    <meta property="og:description" content="Product English name"/>
+    <meta property="og:image" content="../Images/Logo.png"/>
+    <meta property="og:type" content="Market" />
+    <title>پنل کاربری ادمین</title>
+    <link rel="shortcut icon" type="image/png" href="../Images/icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+    integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css" />
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="../Css/Style.css">
+    <script src="../Script/JScript.js"></script>
+</head>
+<body >
+    <!-- Header -->
+    <header>
+        <!-- top bar -->
+        <div class="contain-box">
+            <div class="container container-top-bar">
+                <div class="row top-bar">
+                    <!-- Loging panel -->
+                    <div id="login-panel" class="right-panel-login" style="display: flex;">
+                        <a id="sign-in-link" class="sign-in-link signs-link" href="sign-in.html"><span class="material-icons md-18 icn-org">login</span>ورود</a>
+                        <a id="sign-up-link" class="sign-up-link signs-link" href="sign-up.html"><span class="material-icons md-18 icn-org">create</span>ثبت نام</a>
+                    </div>
+                    <!-- User panel -->
+                    <div id="user-panel" class="right-panel-user" style="display: none;">
+                        <a id="user-link" class="user-link signs-link" href="#"><span class="material-icons md-18 icn-org">person_outline</span>Username</a>
+                    </div>
+                    <!-- Search box -->
+                    <div class="search-box">
+                        <form action="">
+                            <div class="search-group">
+                                    <input type="search" class=" search-bar" placeholder="جستجو...">
+                                    <button type="button" class="search-btn"><span class="material-icons md-18 icn">search</span></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main nav bar -->
+        <nav class="navbar navbar-expand-md nav-cont">
+            <a class="navbar-brand" href="../index.html"><img src="../Images/Logo.png" class="gil-logo" alt="Gil Market Logo"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+                <span class="material-icons md-18 icn-org">menu</span>
+            </button>
+            <div class="collapse navbar-collapse main-menu justify-content-between" id="collapsibleNavbar">
+                <div class="d-flex">
+                    <ul class="navbar-nav">
+                            <li class="nav-item dropdown main-menu-text">
+                            <a class="nav-link dropdown-toggle main-menu-link" id="dropdownMenuButton" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">محصولات</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">محصول اول</a>
+                                    <a class="dropdown-item" href="#">محصول دوم</a>
+                                    <a class="dropdown-item" href="#">محصول سوم</a>
+                                </div>  
+                            </li>
+                            <li class="nav-item dropdown main-menu-text">
+                            <a class="nav-link dropdown-toggle main-menu-link" id="dropdownMenuButton" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">برند ها</a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <a class="dropdown-item" href="#">شرکت اول</a>
+                                    <a class="dropdown-item" href="#">شرکت دوم</a>
+                                    <a class="dropdown-item" href="#">شرکت سوم</a>
+                                </div>
+                            </li>
+                            <li class="nav-item main-menu-text">
+                                <a class="nav-link main-menu-link" href="#">تخفیف ها</a>
+                            </li>
+                        </div>
+                        </li>
+                    </ul>
+                <div class="d-flex cart-box">
+                    <a class="nav-link main-menu-link signs-link" data-toggle="tooltip" href="#" title="سبد خرید"><span class="material-icons md-48 icn-org">shopping_cart</span></a>
+                </div>
+            </div>  
+          </nav>
+    </header>
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <section class="admin-panel">
+                <div class="admin-inf-tab">
+                    <span class="material-icons md-46 icn-org">perm_identity</span>
+                    <span>نام ادمین</span>
+                </div>
+                <!-- about tabs -->
+                <div class="row about-tabs">
+
+                      <!-- Nav tabs -->
+                    <ul class="nav nav-tabs navs-pan" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-edi active" data-toggle="tab" href="#posts-control">مدیریت پست ها</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-edi" data-toggle="tab" href="#comments-control-panel">مدیریت پیام ها</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content tab-content-edi" style="display: block;">
+                        <div id="posts-control" class="container tab-pane active"><br>
+                            <a class="a_href_new_post" href="new-post.html" target="_blank"><button class="btn btn-sub add-new-post"><span class="material-icons md-18 icn-org">post_add</span></button></a>
+                            <div class="post-manage">
+                                <div class="post-card">
+                                    <form action="">
+                                        <div class="post-information">
+                                            <div class=""><img src="https://via.placeholder.com/200x200.png" alt=""></div>
+                                            <div class="post-detail ">
+                                                <div>نام محصول</div>
+                                                <div>English name</div>
+                                                <div>5,000,000</div>
+                                                <div><span>موجودی در انبار:</span>5</div>
+                                                <div><span>دفعات خرید: </span>2</div>
+                                            </div>
+                                        </div>
+                                        <div class="custom-control custom-switch admin-control">
+                                            <div class="switch-active">
+                                                <input type="checkbox" class="custom-control-input" id="switch1">
+                                                <label class="custom-control-label" for="switch1">نمایش دادن</label>
+                                            </div>
+                                            <div class="remove-post-btn">
+                                                <button type="submit" class="btn btn-sub"><span class="material-icons md-18 icn-org">delete_outline</span>حذف</button>
+                                                <button type="button" class="btn btn-sub"><a href="edit-post.html" target="_blank"><span class="material-icons md-18 icn-org">edit_note</span>ویرایش</a></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="comments-control-panel" class="container tab-pane fade"><br>
+                           <div class="comm-control-box">
+                               <div class="unread-comments-titel">پیام های خوانده نشده</div>
+                                    <div class="unread-comments">
+                                        <div class="message-box">
+                                            <form action="">
+                                                <div class="message-user-name">نام کاربر</div>
+                                                <div class="message-content">
+                                                    <p class="message-box">لورم ایپسوم متن ساختگی با تولید سادگی 
+                                                        نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک 
+                                                        است، چاپگرها و متون بلکه روزنامه و مجله در ستون و 
+                                                        سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی 
+                                                        مورد نیاز، و کاربردهای متنوع با هدف بهبود 
+                                                        ابزارهای کاربردی می باشد، کتابهای زیادی در 
+                                                        شصت و سه درصد گذشته حال و آینده، شناخت فراوان 
+                                                        جامعه و متخصصان را می طلبد، تا با نرم افزارها 
+                                                        شناخت بیشتری را برای طراحان رایانه ای علی الخصوص 
+                                                        طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در 
+                                                        این صورت می توان امید داشت که تمام و دشواری موجود در ارائه 
+                                                        راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز
+                                                        شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته
+                                                        اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                                                </div>
+                                                <div class="comments-control-btns">
+                                                    <button type="submit" class="btn btn-sub"><span class="material-icons md-18 icn-org">done</span>تایید</button>
+                                                    <button type="submit" class="btn btn-sub"><span class="material-icons md-18 icn-org">clear</span>حذف</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="message-box">
+                                            <form action="">
+                                                <div class="message-user-name">نام کاربر</div>
+                                                <div class="message-content">
+                                                    <p class="message-box">لورم ایپسوم متن ساختگی با تولید سادگی 
+                                                        نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک 
+                                                        است، چاپگرها و متون بلکه روزنامه و مجله در ستون و 
+                                                        سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی 
+                                                        مورد نیاز، و کاربردهای متنوع با هدف بهبود 
+                                                        ابزارهای کاربردی می باشد.</p>
+                                                </div>
+                                                <div class="comments-control-btns">
+                                                    <button type="submit" class="btn btn-sub"><span class="material-icons md-18 icn-org">done</span>تایید</button>
+                                                    <button type="submit" class="btn btn-sub"><span class="material-icons md-18 icn-org">clear</span>حذف</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                               <div class="read-comments-titel">پیام های تایید شده</div>
+                                    <div class="read-comments">
+                                        <div class="message-box">
+                                            <form action="">
+                                                <div class="message-user-name">نام کاربر</div>
+                                                <div class="message-content">
+                                                    <p class="message-box">لورم ایپسوم متن ساختگی با تولید سادگی 
+                                                        نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک 
+                                                        است، چاپگرها و متون بلکه روزنامه و مجله در ستون و 
+                                                        سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی 
+                                                        مورد نیاز، و کاربردهای متنوع با هدف بهبود 
+                                                        ابزارهای کاربردی می باشد، کتابهای زیادی در 
+                                                        شصت و سه درصد گذشته حال و آینده، شناخت فراوان 
+                                                        جامعه و متخصصان را می طلبد، تا با نرم افزارها 
+                                                        شناخت بیشتری را برای طراحان رایانه ای علی الخصوص 
+                                                        طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در 
+                                                        این صورت می توان امید داشت که تمام و دشواری موجود در ارائه 
+                                                        راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز
+                                                        شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته
+                                                        اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.</p>
+                                                </div>
+                                                <div class="comments-control-btns">
+                                                    <button type="submit" class="btn btn-sub"><span class="material-icons md-18 icn-org">clear</span>حذف</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="message-box">
+                                            <form action="">
+                                                <div class="message-user-name">نام کاربر</div>
+                                                <div class="message-content">
+                                                    <p class="message-box">لورم ایپسوم متن ساختگی با تولید سادگی 
+                                                        نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک 
+                                                        است، چاپگرها و متون بلکه روزنامه و مجله در ستون و 
+                                                        سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی 
+                                                        مورد نیاز، و کاربردهای متنوع با هدف بهبود 
+                                                        ابزارهای کاربردی می باشد.</p>
+                                                </div>
+                                                <div class="comments-control-btns">
+                                                    <button type="submit" class="btn btn-sub"><span class="material-icons md-18 icn-org">clear</span>حذف</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                           </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer>
+        <section class="container">
+            <div class="row mt-3">
+                <div class="col-sm-4 mt-3">
+                    <a class="footer-links" href="#">ارتباط با ما</a>
+                    <a class="footer-links" href="#">درباره ی ایران گیل</a>
+                    <a class="footer-links" href="#">نحوه ی خرید</a>
+                </div>
+                <div class="col-sm-4 mt-3">
+                    <a class="footer-links" href="#">حریم خصوصی</a>
+                    <a class="footer-links" href="#">شیوه های پرداخت</a>
+                    <a class="footer-links" href="#">پاسخ به پرسش های متداول</a>
+                </div>
+                <div class="col-sm-4 mt-3">
+                    <a href="#"><img class="hologram-img" src="https://via.placeholder.com/70x70.png" alt="pic"></a>
+                    <a href="#"><img class="hologram-img" src="https://via.placeholder.com/70x70.png" alt="pic"></a>
+                    <a href="#"><img class="hologram-img" src="https://via.placeholder.com/70x70.png" alt="pic"></a>
+                </div>
+            </div> <hr>
+            <div class="social-links">
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item" data-toggle="tooltip" title="فیس بوک"><a href="#"><i class="fab fa-facebook-square"></i></a></li>
+                    <li class="list-inline-item" data-toggle="tooltip" title="توییتر"><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li class="list-inline-item" data-toggle="tooltip" title="یوتیوب"><a href="#"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div>
+        </section>
+    </footer>
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> -->
+<script src="https://kit.fontawesome.com/715efd0937.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+</html>
+
+<!-- https://via.placeholder.com/728x90.png -->
