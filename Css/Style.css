@@ -14,6 +14,7 @@ a:hover {
 @font-face {
   font-family: GanjNamehSans-Regular;
   src: url(../fonts/GanjNamehSans-Regular.woff);
+  /* only this font used */
 }
 /* Top Nav Bar */
 
