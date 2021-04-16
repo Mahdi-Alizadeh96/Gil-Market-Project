@@ -1176,6 +1176,7 @@ display: -webkit-box;
 }
 .shop-info {
   justify-content: space-between;
+  align-items: center;
   border-top: 1px dashed white;
   padding: 1%;
   display: flex;
