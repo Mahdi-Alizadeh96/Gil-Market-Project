@@ -1,0 +1,34 @@
+{% load static %}
+{% load render_partial %}
+
+<!DOCTYPE html>
+<!-- Gil Market Project by UZ Group -->
+<html html dir="rtl" lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- meta tags -->
+    <meta name="description" content="بازار کالای دیجیتال گیلان">
+    <meta name="keywords" content="کالای دیجیتال ، تبلت ، گوشی موبایل ، ساعت هوشمند ، خرید آنلاین ،هارد اکسترنال">
+    <meta name="author" content="UZ Group">
+    <!-- og -->
+    <meta property="og:title" content="گیل مارکت"/>
+    <meta property="og:url" content="http://GilMarket.ir/"/>
+    <meta property="og:description" content="بزرگترین بازار خرید آنلاین کالای دیجیتال"/>
+    <meta property="og:image" content="Images/Logo.png"/>
+    <meta property="og:type" content="Market"/>
+    <title>گیل مارکت</title>
+    {% include 'shared/_HeaderReferences.html' %}
+</head>
+<body>
+<!-- Header -->
+{% render_partial 'header' %}
+<!-- Main Content -->
+{% block content %}{% endblock %}
+<!-- Footer -->
+{% render_partial 'footer' %}
+</body>
+{% include 'shared/_FooterReferences.html' %}
+</html>
+<!-- https://via.placeholder.com/728x90.png -->
