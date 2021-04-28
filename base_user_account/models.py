@@ -26,8 +26,6 @@ class UserManager(BaseUserManager):
 
 
 # first write this code (create model user)
-
-
 class User(AbstractBaseUser):
     first_name = models.CharField(max_length=50, verbose_name='نام')
     last_name = models.CharField(max_length=50, verbose_name='نام خانوادگی')
