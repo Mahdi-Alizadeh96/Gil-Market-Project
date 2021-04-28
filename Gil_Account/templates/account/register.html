@@ -1,0 +1,63 @@
+{% extends 'shared/_MainLayout.html' %}
+
+{% block content %}
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <section class="sign-in-main">
+                <div class="jumbotron jumbotron-sign-up mt-5">
+                    <span class="material-icons md-18 icn-org">person_add</span>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ register_form.first_name }}
+                            {% for error in register_form.first_name.errors %}
+                                <p style="text-align: right" class="">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            {{ register_form.last_name }}
+                            {% for error in register_form.last_name.errors %}
+                                <p style="text-align: right" class="">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            {{ register_form.phone }}
+                            {% for error in register_form.phone.errors %}
+                                <p style="text-align: right" class="">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            {{ register_form.email }}
+                            {% for error in register_form.email.errors %}
+                                <p style="text-align: right" class="">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            {{ register_form.password }}
+                            {% for error in register_form.password.errors %}
+                                <p style="text-align: right" class="">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            {{ register_form.re_password }}
+                            {% for error in register_form.re_password.errors %}
+                                <p style="text-align: right" class="">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group form-check remember-me-check">
+                            <label class="form-check-label d-flex">
+                                <input class="form-check-input" type="checkbox"><span class="form-check-input-span">مرا به یاد بیاور</span></label>
+                        </div>
+                        <button type="submit" class="btn btn-sub">ثبت</button>
+                    </form>
+                    <hr>
+                    <div class="sign-up-under-box">
+                        <!-- <div><a href="#">فراموشی رمز عبور</a></div> -->
+                        <div><a href="/login">قبلا ثبت نام کرده اید؟</a></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+{% endblock %}

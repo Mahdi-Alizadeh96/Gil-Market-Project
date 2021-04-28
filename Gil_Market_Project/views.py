@@ -1,9 +1,16 @@
 from django.shortcuts import render
+from base_user_account.models import User
 
 
 # header code behind
 def header(request, *args, **kwargs):
-    context = {}
+    firstName = None
+    if request.user.is_authenticated:
+        firstName = request.user.first_name
+
+    context = {
+        'firstName': firstName
+    }
     return render(request, 'shared/Header.html', context)
 
 

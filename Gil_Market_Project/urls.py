@@ -15,13 +15,14 @@ Including another URLconf
 """
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
 from Gil_Market_Project import settings
 from .views import home_page, header, footer
 
 urlpatterns = [
     path('', home_page),
+    path('', include('Gil_Account.urls')),
     path('header', header, name="header"),
     path('footer', footer, name="footer"),
     path('admin/', admin.site.urls),

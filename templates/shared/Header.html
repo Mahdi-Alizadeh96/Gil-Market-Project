@@ -6,16 +6,28 @@
         <div class="container container-top-bar">
             <div class="row top-bar">
                 <!-- Loging panel -->
-                <div id="login-panel" class="right-panel-login" style="display: flex;">
-                    <a id="sign-in-link" class="sign-in-link signs-link" href="Pages/sign-in.html"><span
-                            class="material-icons md-18 icn-org">login</span>ورود</a>
-                    <a id="sign-up-link" class="sign-up-link signs-link" href="#"><span
-                            class="material-icons md-18 icn-org">create</span>ثبت نام</a>
-                </div>
-                <!-- User panel   -->
-                <div id="user-panel" class="right-panel-user" style="display: none;">
-                    <a id="user-link" class="user-link signs-link" href="#"><span class="material-icons md-18 icn-org">person_outline</span>Username</a>
-                </div>
+                {% if not request.user.is_authenticated %}
+                    <div id="login-panel" class="right-panel-login" style="display: flex;">
+                        <a id="sign-in-link" class="sign-in-link signs-link" href="/login"><span
+                                class="material-icons md-18 icn-org">login</span>ورود</a>
+
+                        <a id="sign-up-link" class="sign-up-link signs-link" href="/register"><span
+                                class="material-icons md-18 icn-org">create</span>ثبت نام</a>
+
+                    </div>
+                {% else %}
+                    <!-- User panel   -->
+                    <div id="user-panel" class="right-panel-user" style="display: flex;">
+                        <a id="sign-in-link" class="sign-in-link signs-link" href="/log-out"><span
+                                class="material-icons md-18 icn-org">logout</span>خروج</a>
+
+                        <a id="user-link" class="user-link signs-link" href="#"><span
+                                class="material-icons md-18 icn-org">person_outline</span>{{ firstName }}
+                        </a>
+                    </div>
+                {% endif %}
+
+
                 <!-- Search box -->
                 <div class="search-box">
                     <form action="">
@@ -31,7 +43,7 @@
     </div>
     <!-- Main nav bar -->
     <nav class="navbar navbar-expand-md nav-cont">
-        <a class="navbar-brand" href="#"><img src="{% static 'Images/Logo.png' %}" class="gil-logo"
+        <a class="navbar-brand" href="/"><img src="{% static 'Images/Logo.png' %}" class="gil-logo"
                                               alt="Gil Market Logo"></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
             <span class="material-icons md-18 icn-org">menu</span>
