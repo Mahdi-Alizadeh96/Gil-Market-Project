@@ -1,0 +1,83 @@
+{% extends 'shared/_MainLayout.html' %}
+
+{% block content %}
+    <main>
+        <div class="container">
+            <section class="result-page">
+                <div class="row mt-3">
+                    <form action="" class="w-100">
+                        <div class="form-group d-flex form-filter">
+                            <div class="col col-sm-3">
+                                <!-- <span class="material-icons md-18 icn-org form-filter-icon">filter_list</span> -->
+                                <span>مرتب سازی بر اساس :</span>
+                            </div>
+                            <div class="col col-sm-3">
+                                <select class="form-control input-border" name="" id="">
+                                    <option class="vvb" value="">جدیدترین</option>
+                                    <option value="">پرفروش ترین</option>
+                                    <option value="">ارزان ترین</option>
+                                    <option value="">گران ترین</option>
+                                </select>
+                            </div>
+                            <div class="col col-sm-3">
+                                <input class="form-check-input" type="checkbox" name="" id=""><span
+                                    class="chexbox-span">فقط تخفیفات ویژه</span>
+                            </div>
+                            <div class="col col-sm-3 mnb">
+                                <button type="submit" class="btn btn-sub">برو</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="result-page-main-box">
+                    <ul class="results-ul">
+                        <li class="result-li available-product-off">
+                            <a href="#" class="result-link">
+                                <div class="result-one-show">
+                                    <img class="result-img" src="https://via.placeholder.com/250x250.png" alt="">
+                                    <div class="result-product-name">گوشی موبایل سامسونگ مدل Galaxy A31 SM-A315F/DS دو
+                                        سیم کارت ظرفیت 128 گیگابایت
+                                    </div>
+                                    <div class="result-product-off"><span>20%</span>
+                                        <del>5,000,000</del>
+                                    </div>
+                                    <div class="result-product-price"><span>4,000,000</span><span>تومان</span></div>
+                                </div>
+                            </a>
+                        </li>
+
+                        {% for product in object_list %}
+                            {% if product.active is True %}
+                                <li class="result-li available-product">
+                                    <a href="/products/{{ product.id }}/{{ product.name_fa }}" class="result-link">
+                                        <div class="result-one-show">
+                                            <img class="result-img" src="{{ product.image.url }}" alt="">
+                                            <div class="result-product-name">{{ product.name_fa }}</div>
+                                            <div class="result-product-price padd-butt">
+                                                <span>{{ product.price }}</span><span>تومان</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="result-li unavailable-product">
+                                    <a href="/products/{{ product.id }}/{{ product.name_fa }}" class="result-link">
+                                        <div class="result-one-show">
+                                            <img class="result-img" src="{{ product.image.url }}"
+                                                 alt="">
+                                            <div class="result-product-name">{{ product.name_fa }}</div>
+                                            <div class="result-product-off"><span class="mnb2222">ناموجود</span>
+                                                <del></del>
+                                            </div>
+                                            <div class="result-product-price"><span>0</span><span>تومان</span></div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </section>
+        </div>
+    </main>
+{% endblock %}

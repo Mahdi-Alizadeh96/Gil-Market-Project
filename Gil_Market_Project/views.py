@@ -1,4 +1,6 @@
 from django.shortcuts import render
+
+from Gil_Products_Category.models import ProductCategory
 from base_user_account.models import User
 
 
@@ -8,8 +10,11 @@ def header(request, *args, **kwargs):
     if request.user.is_authenticated:
         firstName = request.user.first_name
 
+    category_list = ProductCategory.objects.all()
+
     context = {
-        'firstName': firstName
+        'firstName': firstName,
+        'categoryList': category_list
     }
     return render(request, 'shared/Header.html', context)
 
@@ -22,7 +27,8 @@ def footer(request, *args, **kwargs):
 
 # code behind
 def home_page(request):
+    category_list = ProductCategory.objects.all()
     context = {
-        'data': 'new_data'
+        'categoryList': category_list
     }
     return render(request, 'home_page.html', context)

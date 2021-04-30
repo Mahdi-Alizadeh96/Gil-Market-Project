@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     # our applications
     'base_user_account',
     'Gil_Account',
+    'Gil_Products',
+    'Gil_Products_Category',
 ]
 
 MIDDLEWARE = [

@@ -23,8 +23,10 @@ from .views import home_page, header, footer
 urlpatterns = [
     path('', home_page),
     path('', include('Gil_Account.urls')),
+    path('', include('Gil_Products.urls')),
     path('header', header, name="header"),
     path('footer', footer, name="footer"),
+
     path('admin/', admin.site.urls),
 ]
 

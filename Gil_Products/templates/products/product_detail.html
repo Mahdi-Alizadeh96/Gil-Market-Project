@@ -1,0 +1,195 @@
+{% extends 'shared/_MainLayout.html' %}
+{% load static %}
+
+{% block content %}
+    <main>
+        <div class="container">
+            <section class="product">
+                <div class="row justify-content-end ml-1 mr-1">
+                    <div class="English-name-line"></div>
+                    <span class="English-name-text">{{ product.name_en }}</span>
+                </div>
+                <div class="product-images-part">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col-sm-6 d-flex justify-content-center flex-wrap four-images">
+                            <div class="col-sm-6"><img class="img-tags" src="https://via.placeholder.com/230x130"
+                                                       alt=""></div>
+                            <div class="col-sm-6"><img class="img-tags" src="https://via.placeholder.com/230x130"
+                                                       alt=""></div>
+                            <div class="col-sm-6"><img class="img-tags" src="https://via.placeholder.com/230x130"
+                                                       alt=""></div>
+                            <div class="col-sm-6"><img class="img-tags" src="https://via.placeholder.com/230x130"
+                                                       alt=""></div>
+                        </div>
+                        <div class="col-sm-6 d-flex justify-content-center main-image">
+                            <img class="img-tags" src="{{ product.image.url }}" alt="">
+                        </div>
+                    </div>
+                </div>
+                <div class="row Description-part">
+                    <h1 class="Product-name">{{ product.name_fa }}</h1>
+                </div>
+                <div class="row Description-butt">
+                    <div class="col-sm-8 product-point-box">
+                        <span class="product-point">ویژگی 1</span>
+                        <span class="product-point">ویژگی 2</span>
+                        <span class="product-point">ویژگی 3</span>
+                        <span class="product-point">ویژگی 4</span>
+                    </div>
+                    <div class="col-sm-3 select-buy-box">
+                        <div>
+                            <div class="price">{{ product.price }}</div>
+                            <span>تومان</span>
+                        </div>
+                        <button class="send-to-cart">اضافه کردن به سبد خرید</button>
+                    </div>
+                </div>
+                <!-- about tabs -->
+                <div class="row about-tabs" style="text-align: right;">
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs navs-pan" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-edi active" data-toggle="tab" href="#about">توضیحات</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-edi" data-toggle="tab" href="#Specifications">مشخصات</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-edi" data-toggle="tab" href="#Comments">نظرات</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content tab-content-edi" style="display: block;">
+                        <div id="about" class="container tab-pane active"><br>
+                            <h3>درباره کالا</h3>
+                            <p id="about-text" class="about-text">
+                                {{ product.description }}
+                            </p>
+                        </div>
+                        <div id="Specifications" class="container tab-pane fade"><br>
+                            <h3>مشخصات کالا</h3>
+                            <table class="table table-borderless table-edi">
+                                <tbody>
+                                <tr>
+                                    <td class="td-p1">رم</td>
+                                    <td class="td-p2">8 گیگ</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-p1">دوربین اصلی</td>
+                                    <td class="td-p2">42 مگا پیکسل</td>
+                                </tr>
+                                <tr>
+                                    <td class="td-p1">اندازه</td>
+                                    <td class="td-p2">7 اینچ</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div id="Comments" class="container tab-pane fade w-100"><br>
+                            <div class="Comments-part">
+                                <div class="add-Comment">
+                                    <div class="write-your-comment"><h5>نظر خود را بنویسید</h5></div>
+                                    <form action="">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control mb-2 input-border" id="user-comment"
+                                                   placeholder="نام خود را وارد کنید">
+                                            <textarea class="form-control comment-box input-border" rows="5"
+                                                      id="comment" placeholder="نظر خود را بنویسید..."></textarea>
+                                            <button type="button" class="btn mt-2 input-border btn-sub"
+                                                    data-toggle="modal" data-target="#submitModal2">ارسال
+                                            </button>
+
+                                            <!-- The Modal 1-->
+                                            <div class="modal fade" id="submitModal1">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+
+                                                        <!-- Modal Header -->
+                                                        <div class="modal-header">
+                                                            <!-- <h4 class="modal-title">با تشکر از نظر شما</h4> Removed -->
+                                                            <button type="button" class="close modal-close"
+                                                                    data-dismiss="modal">×
+                                                            </button>
+                                                        </div>
+
+                                                        <!-- Modal body -->
+                                                        <div class="modal-body">
+                                                            <p class="modal-text">نظر شما پس از بررسی ثبت خواهد شد.</p>
+                                                        </div>
+
+                                                        <!-- Modal footer -->
+                                                        <div class="modal-footer">
+                                                            <span class="material-icons success-comment-tick md-42">check_circle</span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- The Modal 1 End-->
+                                            <!-- The Modal 2-->
+                                            <div class="modal fade" id="submitModal2">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+
+                                                        <!-- Modal Header -->
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close modal-close"
+                                                                    data-dismiss="modal">×
+                                                            </button>
+                                                        </div>
+
+                                                        <!-- Modal body -->
+                                                        <div class="modal-body">
+                                                            <p class="modal-text">برای ثبت نظر لطفا وارد سایت شوید.</p>
+                                                        </div>
+
+                                                        <!-- Modal footer -->
+                                                        <div class="modal-footer">
+                                                            <a href="sign-in.html" target="_blank">
+                                                                <button type="button" class="btn btn-sub">ورود</button>
+                                                            </a>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!-- The Modal 2 End-->
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div id="old-comments" class="old-comments">
+                                <h3>دیدگاه دیگران</h3>
+                            </div>
+                            <div class="other-user-comments">
+                                <div class="other-user-comment-box">
+                                    <div class="user-name-comment">علی شکوری</div>
+                                    <div class="user-comment-text">
+                                        لورم ایپسوم متن ساختگی با تولید سادگی
+                                        نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون
+                                        بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                                        تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
+                                        می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان
+                                        جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان
+                                        رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                                    </div>
+                                </div>
+                                <div class="other-user-comment-box">
+                                    <div class="user-name-comment">ایوان مودی</div>
+                                    <div class="user-comment-text">
+                                        لورم ایپسوم متن ساختگی با تولید سادگی
+                                        نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون
+                                        بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
+                                        تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
+                                        می باشد.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+{% endblock %}

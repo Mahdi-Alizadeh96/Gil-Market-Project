@@ -55,9 +55,9 @@
                         <a class="nav-link dropdown-toggle main-menu-link" id="dropdownMenuButton" href="#"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">محصولات</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="#">محصول اول</a>
-                            <a class="dropdown-item" href="#">محصول دوم</a>
-                            <a class="dropdown-item" href="#">محصول سوم</a>
+                            {% for category in categoryList %}
+                                <a class="dropdown-item" href="/products/{{ category.name }}">{{ category.title }}</a>
+                            {% endfor %}
                         </div>
                     </li>
                     <li class="nav-item dropdown main-menu-text">

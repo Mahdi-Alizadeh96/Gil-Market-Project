@@ -61,43 +61,12 @@
         </section>
         <section class="container">
             <div class="row mt-3">
-                <div class="col-sm-4 divi-parts"><a href="#"><img class="d-link-nav"
-                                                                  src="https://via.placeholder.com/350x177"
-                                                                  alt="pic"></a>
-                </div>
-                <div class="col-sm-4 divi-parts"><a href="#"><img class="d-link-nav"
-                                                                  src="https://via.placeholder.com/350x177"
-                                                                  alt="pic"></a>
-                </div>
-                <div class="col-sm-4 divi-parts"><a href="#"><img class="d-link-nav"
-                                                                  src="https://via.placeholder.com/350x177"
-                                                                  alt="pic"></a>
-                </div>
-                <div class="col-sm-4 divi-parts"><a href="#"><img class="d-link-nav"
-                                                                  src="https://via.placeholder.com/350x177"
-                                                                  alt="pic"></a>
-                </div>
-                <div class="col-sm-4 divi-parts"><a href="#"><img class="d-link-nav"
-                                                                  src="https://via.placeholder.com/350x177"
-                                                                  alt="pic"></a>
-                </div>
-                <div class="col-sm-4 divi-parts"><a href="#"><img class="d-link-nav"
-                                                                  src="https://via.placeholder.com/350x177"
-                                                                  alt="pic"></a>
-                </div>
-                <div class="col-sm-4 divi-parts"><a href="#"><img class="d-link-nav"
-                                                                  src="https://via.placeholder.com/350x177"
-                                                                  alt="pic"></a>
-                </div>
-                <div class="col-sm-4 divi-parts"><a href="#"><img class="d-link-nav"
-                                                                  src="https://via.placeholder.com/350x177"
-                                                                  alt="pic"></a>
-                </div>
-                <div class="col-sm-4 divi-parts"><a href="#"><img class="d-link-nav"
-                                                                  src="https://via.placeholder.com/350x177"
-                                                                  alt="pic"></a>
-                </div>
-
+                {% for category in categoryList %}
+                    <div class="col-sm-4 divi-parts"><a href="/products/{{ category.name }}"><img class="d-link-nav"
+                                                                                                  src="{{ category.image.url }}"
+                                                                                                  alt="pic"></a>
+                    </div>
+                {% endfor %}
             </div>
         </section>
     </main>

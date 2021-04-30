@@ -3,7 +3,6 @@
 *.pyc
 __pycache__/
 local_settings.py
-db.sqlite3
 /media
 /static
 ## Ignore Visual Studio temporary files, build results, and
