@@ -1,7 +1,8 @@
 import os
-
+from django.db.models import Q
 from django.db import models
 
+from Gil_Product_Brand.models import ProductBrand
 from Gil_Products_Category.models import ProductCategory
 
 
@@ -28,6 +29,10 @@ class ProductManager(models.Manager):
     def get_product_by_category(self, category_name):
         return self.get_queryset().filter(categories__name__iexact=category_name)
 
+    def get_product_by_category_brand(self, brand_name, category_name):
+        return self.get_queryset().filter(brands__name__iexact=brand_name,
+                                          categories__name__iexact=category_name)
+
 
 class Product(models.Model):
     name_fa = models.CharField(max_length=30, verbose_name='نام محصول (فارسی)')
@@ -40,6 +45,8 @@ class Product(models.Model):
     active = models.BooleanField(default=False, verbose_name='موجود / ناموجود')
     categories = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, null=True, blank=True,
                                    verbose_name="دسته بندی ها")
+    brands = models.ForeignKey(ProductBrand, on_delete=models.CASCADE, null=True, blank=True,
+                               verbose_name="برندها")
 
     objects = ProductManager()
 

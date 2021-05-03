@@ -64,9 +64,9 @@
                         <a class="nav-link dropdown-toggle main-menu-link" id="dropdownMenuButton" href="#"
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">برند ها</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">شرکت اول</a>
-                            <a class="dropdown-item" href="#">شرکت دوم</a>
-                            <a class="dropdown-item" href="#">شرکت سوم</a>
+                            {% for brands in brand %}
+                                <a class="dropdown-item" href="/brands/{{ brands.name }}">{{ brands.title }}</a>
+                            {% endfor %}
                         </div>
                     </li>
                     <li class="nav-item main-menu-text">

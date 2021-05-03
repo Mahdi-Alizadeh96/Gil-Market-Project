@@ -1,0 +1,35 @@
+{% extends 'shared/_MainLayout.html' %}
+
+{% block content %}
+    <main>
+        <div class="container">
+            <section class="brand-container">
+                <div class="row">
+                    <img src="{{ brand.image.url }}" alt="">
+                    <h2>{{ brand.title }}</h2>
+                    <p>
+                        {{ brand.description }}
+                    </p>
+                </div>
+                <div class="brand-group-main-box">
+                    {% for category in brand.categories.all %}
+                        <div class="brand-product-divide">
+                            <fieldset>
+                                <legend>{{ category.title }}</legend>
+                                <div>
+                                    <a href="/result/{{ brand.name }}/{{ category.name }}">
+                                        <picture>
+                                            <source srcset="{{ category.image.url }}"
+                                                    media="(max-width: 500px)">
+                                            <img src="{{ category.image.url }}" alt="">
+                                        </picture>
+                                    </a>
+                                </div>
+                            </fieldset>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+        </div>
+    </main>
+{% endblock %}

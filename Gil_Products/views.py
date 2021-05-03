@@ -1,15 +1,14 @@
 from django.shortcuts import render
 from django.views.generic import ListView
+from Gil_Product_Brand.models import ProductBrand
 from .models import Product
 from django.http import Http404
 from Gil_Products_Category.models import ProductCategory
 
 
-class ProductList(ListView):
-    template_name = 'products/product_list.html'
-
-    def get_queryset(self):
-        return Product.objects.all()
+def product_list(request, *args, **kwargs):
+    context = {}
+    return render(request, 'products/product_list.html', context)
 
 
 class ProductListByCategory(ListView):
@@ -21,6 +20,19 @@ class ProductListByCategory(ListView):
         if category is None:
             raise Http404("صفحه مورد نظر یافت نشد!")
         return Product.objects.get_product_by_category(category_name)
+
+
+class ProductCategoryBrand(ListView):
+    template_name = 'products/product_list.html'
+
+    def get_queryset(self):
+        brand_name = self.kwargs['brand_name']
+        category_name = self.kwargs['category_name']
+        brand = ProductBrand.objects.get_by_name(brand_name)
+        category = ProductCategory.objects.filter(name__iexact=category_name).first()
+        if brand and category is None:
+            raise Http404('صفحه مورد نظر یافت نشد')
+        return Product.objects.get_product_by_category_brand(brand_name, category_name)
 
 
 def product_detail(request, *args, **kwargs):

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from Gil_Product_Brand.models import ProductBrand
 from Gil_Products_Category.models import ProductCategory
 from base_user_account.models import User
 
@@ -11,10 +12,12 @@ def header(request, *args, **kwargs):
         firstName = request.user.first_name
 
     category_list = ProductCategory.objects.all()
+    brand = ProductBrand.objects.all()
 
     context = {
         'firstName': firstName,
-        'categoryList': category_list
+        'categoryList': category_list,
+        'brand': brand
     }
     return render(request, 'shared/Header.html', context)
 
