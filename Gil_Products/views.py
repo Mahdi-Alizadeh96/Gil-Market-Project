@@ -47,3 +47,14 @@ def product_detail(request, *args, **kwargs):
         'product': product
     }
     return render(request, 'products/product_detail.html', context)
+
+
+class SearchProducts(ListView):
+    template_name = 'products/product_list.html'
+
+    def get_queryset(self):
+        request = self.request
+        query = request.GET.get('q')
+        if query is not None:
+            return Product.objects.search(query)
+        return None

@@ -30,10 +30,11 @@
 
                 <!-- Search box -->
                 <div class="search-box">
-                    <form action="">
+                    <form action="/result/search" method="get">
                         <div class="search-group">
-                            <input type="search" class=" search-bar" placeholder="جستجو...">
-                            <button type="button" class="search-btn"><span
+                            <input type="search" class=" search-bar" placeholder="جستجو..." value="{{ request.GET.q }}"
+                                   name="q">
+                            <button type="submit" class="search-btn"><span
                                     class="material-icons md-18 icn">search</span></button>
                         </div>
                     </form>

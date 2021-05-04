@@ -33,6 +33,10 @@ class ProductManager(models.Manager):
         return self.get_queryset().filter(brands__name__iexact=brand_name,
                                           categories__name__iexact=category_name)
 
+    def search(self, query):
+        lookup = Q(name_fa__icontains=query) | Q(name_en__icontains=query) | Q(description__icontains=query)
+        return Product.objects.filter(lookup).distinct()
+
 
 class Product(models.Model):
     name_fa = models.CharField(max_length=30, verbose_name='نام محصول (فارسی)')
