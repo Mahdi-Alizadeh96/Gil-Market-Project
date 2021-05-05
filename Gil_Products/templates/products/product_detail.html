@@ -12,14 +12,10 @@
                 <div class="product-images-part">
                     <div class="row d-flex justify-content-center align-items-center">
                         <div class="col-sm-6 d-flex justify-content-center flex-wrap four-images">
-                            <div class="col-sm-6"><img class="img-tags" src="https://via.placeholder.com/230x130"
-                                                       alt=""></div>
-                            <div class="col-sm-6"><img class="img-tags" src="https://via.placeholder.com/230x130"
-                                                       alt=""></div>
-                            <div class="col-sm-6"><img class="img-tags" src="https://via.placeholder.com/230x130"
-                                                       alt=""></div>
-                            <div class="col-sm-6"><img class="img-tags" src="https://via.placeholder.com/230x130"
-                                                       alt=""></div>
+                            {% for gallery in galleries %}
+                                <div class="col-sm-6"><img class="img-tags" src="{{ gallery.image.url }}"
+                                                           alt="{{ gallery.image.title }}"></div>
+                            {% endfor %}
                         </div>
                         <div class="col-sm-6 d-flex justify-content-center main-image">
                             <img class="img-tags" src="{{ product.image.url }}" alt="">
@@ -37,11 +33,17 @@
                         <span class="product-point">ویژگی 4</span>
                     </div>
                     <div class="col-sm-3 select-buy-box">
-                        <div>
-                            <div class="price">{{ product.price }}</div>
-                            <span>تومان</span>
-                        </div>
-                        <button class="send-to-cart">اضافه کردن به سبد خرید</button>
+                        {% if product.active is True %}
+                            <div>
+                                <div class="price">{{ product.price }}</div>
+                                <span>تومان</span>
+                            </div>
+                            <button class="send-to-cart">اضافه کردن به سبد خرید</button>
+                        {% else %}
+                            <div class="result-product-off"><span class="mnb2222">ناموجود</span>
+                                <del></del>
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
                 <!-- about tabs -->
@@ -93,7 +95,8 @@
                                     <div class="write-your-comment"><h5>نظر خود را بنویسید</h5></div>
                                     <form action="">
                                         <div class="form-group">
-                                            <input type="text" class="form-control mb-2 input-border" id="user-comment"
+                                            <input type="text" class="form-control mb-2 input-border"
+                                                   id="user-comment"
                                                    placeholder="نام خود را وارد کنید">
                                             <textarea class="form-control comment-box input-border" rows="5"
                                                       id="comment" placeholder="نظر خود را بنویسید..."></textarea>
@@ -116,7 +119,8 @@
 
                                                         <!-- Modal body -->
                                                         <div class="modal-body">
-                                                            <p class="modal-text">نظر شما پس از بررسی ثبت خواهد شد.</p>
+                                                            <p class="modal-text">نظر شما پس از بررسی ثبت خواهد
+                                                                شد.</p>
                                                         </div>
 
                                                         <!-- Modal footer -->
@@ -141,13 +145,15 @@
 
                                                         <!-- Modal body -->
                                                         <div class="modal-body">
-                                                            <p class="modal-text">برای ثبت نظر لطفا وارد سایت شوید.</p>
+                                                            <p class="modal-text">برای ثبت نظر لطفا وارد سایت
+                                                                شوید.</p>
                                                         </div>
 
                                                         <!-- Modal footer -->
                                                         <div class="modal-footer">
                                                             <a href="sign-in.html" target="_blank">
-                                                                <button type="button" class="btn btn-sub">ورود</button>
+                                                                <button type="button" class="btn btn-sub">ورود
+                                                                </button>
                                                             </a>
                                                         </div>
 

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView
 from Gil_Product_Brand.models import ProductBrand
-from .models import Product
+from .models import Product, Gallery
 from django.http import Http404
 from Gil_Products_Category.models import ProductCategory
 
@@ -36,15 +36,17 @@ class ProductCategoryBrand(ListView):
 
 
 def product_detail(request, *args, **kwargs):
-    product_id = kwargs['productId']
-
-    product = Product.objects.get_by_id(product_id)
+    selected_product_id = kwargs['productId']
+    product = Product.objects.get_by_id(selected_product_id)
 
     if product is None:
         raise Http404('محصول مورد نظر یافت نشد!')
 
+    galleries = Gallery.objects.filter(product_id=selected_product_id)
+
     context = {
-        'product': product
+        'product': product,
+        'galleries': galleries
     }
     return render(request, 'products/product_detail.html', context)
 
