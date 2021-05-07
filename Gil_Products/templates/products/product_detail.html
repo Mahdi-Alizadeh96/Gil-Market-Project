@@ -93,14 +93,12 @@
                             <div class="Comments-part">
                                 <div class="add-Comment">
                                     <div class="write-your-comment"><h5>نظر خود را بنویسید</h5></div>
-                                    <form action="">
+                                    <form method="post">
+                                        {% csrf_token %}
                                         <div class="form-group">
-                                            <input type="text" class="form-control mb-2 input-border"
-                                                   id="user-comment"
-                                                   placeholder="نام خود را وارد کنید">
-                                            <textarea class="form-control comment-box input-border" rows="5"
-                                                      id="comment" placeholder="نظر خود را بنویسید..."></textarea>
-                                            <button type="button" class="btn mt-2 input-border btn-sub"
+                                            {{ comment_form.name }}
+                                            {{ comment_form.message }}
+                                            <button type="submit" class="btn mt-2 input-border btn-sub"
                                                     data-toggle="modal" data-target="#submitModal2">ارسال
                                             </button>
 
@@ -122,7 +120,7 @@
                                                             <p class="modal-text">نظر شما پس از بررسی ثبت خواهد
                                                                 شد.</p>
                                                         </div>
-
+                                                        {##}
                                                         <!-- Modal footer -->
                                                         <div class="modal-footer">
                                                             <span class="material-icons success-comment-tick md-42">check_circle</span>
@@ -168,30 +166,16 @@
                             <div id="old-comments" class="old-comments">
                                 <h3>دیدگاه دیگران</h3>
                             </div>
-                            <div class="other-user-comments">
-                                <div class="other-user-comment-box">
-                                    <div class="user-name-comment">علی شکوری</div>
-                                    <div class="user-comment-text">
-                                        لورم ایپسوم متن ساختگی با تولید سادگی
-                                        نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون
-                                        بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                                        تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
-                                        می باشد. کتابهای زیادی در شصت و سه درصد گذشته، حال و آینده شناخت فراوان
-                                        جامعه و متخصصان را می طلبد تا با نرم افزارها شناخت بیشتری را برای طراحان
-                                        رایانه ای علی الخصوص طراحان خلاقی و فرهنگ پیشرو در زبان فارسی ایجاد کرد.
+                            {% for comment in comments %}
+                                <div class="other-user-comments">
+                                    <div class="other-user-comment-box">
+                                        <div class="user-name-comment">{{ comment.name }}</div>
+                                        <div class="user-comment-text">
+                                            {{ comment.message }}
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="other-user-comment-box">
-                                    <div class="user-name-comment">ایوان مودی</div>
-                                    <div class="user-comment-text">
-                                        لورم ایپسوم متن ساختگی با تولید سادگی
-                                        نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون
-                                        بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی
-                                        تکنولوژی مورد نیاز و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی
-                                        می باشد.
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

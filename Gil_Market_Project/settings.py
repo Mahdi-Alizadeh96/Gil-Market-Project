@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'Gil_Products',
     'Gil_Products_Category',
     'Gil_Product_Brand',
+    'Gil_Comment',
 ]
 
 MIDDLEWARE = [
@@ -123,15 +124,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/site_static/'
+STATIC_ROOT = BASE_DIR / "static_cdn" / "static_root"
 
 STATICFILES_DIRS = [
     BASE_DIR / "assets"
 ]
 
-STATIC_ROOT = BASE_DIR / "static_cdn" / "static_root"
-
 MEDIA_URL = '/media/'
-
 MEDIA_ROOT = BASE_DIR / "static_cdn" / "media_root"
 
 # Default primary key field type

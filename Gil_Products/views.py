@@ -1,5 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView
+from Gil_Comment.forms import CommentForm
+from Gil_Comment.models import Comments
 from Gil_Product_Brand.models import ProductBrand
 from .models import Product, Gallery
 from django.http import Http404
@@ -43,10 +45,20 @@ def product_detail(request, *args, **kwargs):
         raise Http404('محصول مورد نظر یافت نشد!')
 
     galleries = Gallery.objects.filter(product_id=selected_product_id)
+    comments = product.comments.filter(active=True)
+
+    comment_form = CommentForm(request.POST or None)
+    if comment_form.is_valid():
+        name = comment_form.cleaned_data.get('name')
+        message = comment_form.cleaned_data.get('message')
+        Comments.objects.create(product=product, name=name, message=message)
+        return redirect(f'/products/{product.id}/{product.name_fa}')
 
     context = {
         'product': product,
-        'galleries': galleries
+        'galleries': galleries,
+        'comments': comments,
+        'comment_form': comment_form
     }
     return render(request, 'products/product_detail.html', context)
 
