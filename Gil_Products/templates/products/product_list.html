@@ -31,30 +31,33 @@
                 </div>
                 <div class="result-page-main-box">
                     <ul class="results-ul">
-                        <li class="result-li available-product-off">
-                            <a href="#" class="result-link">
-                                <div class="result-one-show">
-                                    <img class="result-img" src="https://via.placeholder.com/250x250.png" alt="">
-                                    <div class="result-product-name">گوشی موبایل سامسونگ مدل Galaxy A31 SM-A315F/DS دو
-                                        سیم کارت ظرفیت 128 گیگابایت
-                                    </div>
-                                    <div class="result-product-off"><span>20%</span>
-                                        <del>5,000,000</del>
-                                    </div>
-                                    <div class="result-product-price"><span>4,000,000</span><span>تومان</span></div>
-                                </div>
-                            </a>
-                        </li>
-
                         {% for product in object_list %}
-                            {% if product.active is True %}
+                            {% if product.active is True and product.discount is not 0 %}
+                                <li class="result-li available-product-off">
+                                    <a href="/products/{{ product.id }}/{{ product.name_fa }}" class="result-link">
+                                        <div class="result-one-show">
+                                            <img class="result-img" src="{{ product.image.url }}"
+                                                 alt="">
+                                            <div class="result-product-name">
+                                                {{ product.name_fa }}
+                                            </div>
+                                            <div class="result-product-off"><span>{{ product.discount }}%</span>
+                                                <del>{{ product.price }}</del>
+                                            </div>
+                                            <div class="result-product-price">
+                                                <span>{{ product.get_sale }}</span><span>تومان</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% elif product.active is True and product.discount is 0 %}
                                 <li class="result-li available-product">
                                     <a href="/products/{{ product.id }}/{{ product.name_fa }}" class="result-link">
                                         <div class="result-one-show">
                                             <img class="result-img" src="{{ product.image.url }}" alt="">
                                             <div class="result-product-name">{{ product.name_fa }}</div>
                                             <div class="result-product-price padd-butt">
-                                                <span>{{ product.price }}</span><span>تومان</span>
+                                                <span>{{ product.get_sale }}</span><span>تومان</span>
                                             </div>
                                         </div>
                                     </a>

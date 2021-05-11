@@ -5,7 +5,7 @@ from .models import Product, Gallery
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ["__str__", 'name_fa', 'year', 'price', 'active']
+    list_display = ["__str__", 'name_fa', 'year', 'price', 'discount', 'active']
 
     class Meta:
         model = Product

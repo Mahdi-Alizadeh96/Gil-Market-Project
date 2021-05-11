@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from Gil_Comment.forms import CommentForm
@@ -72,3 +73,10 @@ class SearchProducts(ListView):
         if query is not None:
             return Product.objects.search(query)
         return None
+
+
+class DiscountView(ListView):
+    template_name = 'products/product_list.html'
+
+    def get_queryset(self):
+        return Product.objects.filter(~Q(discount=0), active=True)

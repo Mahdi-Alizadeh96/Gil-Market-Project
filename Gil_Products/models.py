@@ -43,12 +43,14 @@ class ProductManager(models.Manager):
         return Product.objects.filter(lookup).distinct()
 
 
+
+
 class Product(models.Model):
     name_fa = models.CharField(max_length=150, verbose_name='نام محصول (فارسی)')
     name_en = models.CharField(max_length=150, verbose_name='نام محصول (انگلیسی)')
     year = models.IntegerField(verbose_name='سال تولید')
     price = models.BigIntegerField(verbose_name='قیمت')
-    discount = models.IntegerField(null=True, blank=True, verbose_name='مبلغ تخفیف')
+    discount = models.IntegerField(null=True, blank=True, default=0, verbose_name='درصد تخفیف')
     description = models.TextField(verbose_name='توضیحات محصول')
     image = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='تصویر')
     active = models.BooleanField(default=False, verbose_name='موجود / ناموجود')
@@ -65,6 +67,10 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name_en
+
+    def get_sale(self):
+        price = int(self.price * (100 - self.discount) / 100)
+        return price
 
 
 class Gallery(models.Model):

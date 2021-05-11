@@ -34,8 +34,13 @@
                     </div>
                     <div class="col-sm-3 select-buy-box">
                         {% if product.active is True %}
+                            {% if product.discount is not 0 %}
+                                <div class="result-product-off"><span>{{ product.discount }}%</span>
+                                    <del>{{ product.price }}</del>
+                                </div>
+                            {% endif %}
                             <div>
-                                <div class="price">{{ product.price }}</div>
+                                <div class="price">{{ product.get_sale }}</div>
                                 <span>تومان</span>
                             </div>
                             <button class="send-to-cart">اضافه کردن به سبد خرید</button>
