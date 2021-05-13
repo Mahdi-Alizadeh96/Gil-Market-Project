@@ -43,7 +43,11 @@
                                 <div class="price">{{ product.get_sale }}</div>
                                 <span>تومان</span>
                             </div>
-                            <button class="send-to-cart">اضافه کردن به سبد خرید</button>
+                            <form method="post" action="/add-user-order">
+                                {% csrf_token %}
+                                {{ new_order_form.productId }}
+                                <button type="submit" class="send-to-cart">اضافه کردن به سبد خرید</button>
+                            </form>
                         {% else %}
                             <div class="result-product-off"><span class="mnb2222">ناموجود</span>
                                 <del></del>

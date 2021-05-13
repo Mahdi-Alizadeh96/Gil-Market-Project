@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.generic import ListView
 from Gil_Comment.forms import CommentForm
 from Gil_Comment.models import Comments
+from Gil_Order.forms import UserNewOrderForm
 from Gil_Product_Brand.models import ProductBrand
 from .models import Product, Gallery
 from django.http import Http404
@@ -40,6 +41,8 @@ class ProductCategoryBrand(ListView):
 
 def product_detail(request, *args, **kwargs):
     selected_product_id = kwargs['productId']
+    new_order_form = UserNewOrderForm(request.POST or None, initial={'productId': selected_product_id})
+
     product = Product.objects.get_by_id(selected_product_id)
 
     if product is None:
@@ -59,7 +62,8 @@ def product_detail(request, *args, **kwargs):
         'product': product,
         'galleries': galleries,
         'comments': comments,
-        'comment_form': comment_form
+        'comment_form': comment_form,
+        'new_order_form': new_order_form
     }
     return render(request, 'products/product_detail.html', context)
 

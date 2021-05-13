@@ -24,7 +24,7 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-
+    
 # first write this code (create model user)
 class User(AbstractBaseUser):
     first_name = models.CharField(max_length=50, verbose_name='نام')
@@ -54,3 +54,6 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
+
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}"

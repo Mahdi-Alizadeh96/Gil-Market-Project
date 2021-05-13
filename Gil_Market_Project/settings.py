@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'Gil_Product_Brand',
     'Gil_Comment',
     'Gil_Sliders',
+    'Gil_Order',
 ]
 
 MIDDLEWARE = [
