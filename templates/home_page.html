@@ -19,8 +19,10 @@
                         <div class="carousel-inner">
                             {% for slider in sliders %}
                                 <div class="carousel-item {{ forloop.first|yesno:'active,' }}">
-                                    <img class="carousel-set" src="{{ slider.image.url }}" alt="{{ slider.title }}"
+                                    <a href="">
+                                        <img class="carousel-set" src="{{ slider.image.url }}" alt="{{ slider.title }}"
                                          style="width: 730px; height: 350px">
+                                    </a>
                                 </div>
                             {% endfor %}
                         </div>
