@@ -1,0 +1,45 @@
+{% extends 'shared/_MainLayout.html' %}
+
+{% block content %}
+    <main>
+        <div class="container">
+            <div class="buy-cart">
+                <div class="edit-post-icn"><span class="material-icons md-18 icn-org">local_mall</span></div>
+                <form action="">
+                    <div class="cart-shop">
+                        <div class="shop-items">
+                            {% if order != None and details|length > 0 %}
+                                {% for detail in details %}
+                                    <div class="shop-item-spi">
+                                        <img src="{{ detail.product.image.url }}" alt="">
+                                        <div>{{ detail.product.name_fa }}</div>
+                                        <div class="shop-item-spi-price remove-border">
+                                            {{ detail.product.get_sale }}</div>
+                                        <div class="remove-product-box">
+                                            <a class="btn remove-product" href="/remove-order-detail/{{ detail.id }}">
+                                                حذف کالا
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                            {% else %}
+                                <div class="alert alert-warning">
+                                    <p>هیچ محصولی در سبد خرید شما یافت نشد</p>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="shop-info">
+                            <div>
+                                <button type="submit" class="btn btn-sub">نهایی کردن پرداخت</button>
+                            </div>
+                            <div class="all-sum">
+                                <div>مجموع کل :</div>
+                                <div>{{ total }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+{% endblock %}
