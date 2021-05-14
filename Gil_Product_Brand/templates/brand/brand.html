@@ -15,16 +15,11 @@
                     {% for category in brand.categories.all %}
                         <div class="brand-product-divide">
                             <fieldset>
-                                <legend>{{ category.title }}</legend>
+                                <legend><a href="">{{ category.title }}</a></legend>
                                 <div>
-                                    <a href="/result/{{ brand.name }}/{{ category.name }}">
-                                        <picture>
-                                            <source srcset="{{ category.image.url }}"
-                                                    media="(max-width: 500px)">
-                                            <img src="{{ category.image.url }}" alt=""
-                                                 style="width: 1000px;height: 200px">
-                                        </picture>
-                                    </a>
+                                    
+                                    <!-- all styles of products in result page will appear here (Random)-->
+
                                 </div>
                             </fieldset>
                         </div>

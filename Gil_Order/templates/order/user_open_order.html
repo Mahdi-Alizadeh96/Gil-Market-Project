@@ -11,7 +11,7 @@
                             {% if order != None and details|length > 0 %}
                                 {% for detail in details %}
                                     <div class="shop-item-spi">
-                                        <img src="{{ detail.product.image.url }}" alt="">
+                                        <a href=""><img src="{{ detail.product.image.url }}" alt=""></a>
                                         <div>{{ detail.product.name_fa }}</div>
                                         <div class="shop-item-spi-price remove-border">
                                             {{ detail.product.get_sale }}</div>
@@ -33,7 +33,7 @@
                                 <button type="submit" class="btn btn-sub">نهایی کردن پرداخت</button>
                             </div>
                             <div class="all-sum">
-                                <div>مجموع کل :</div>
+                                <div>مجموع کل (تومان) :</div>
                                 <div>{{ total }}</div>
                             </div>
                         </div>
