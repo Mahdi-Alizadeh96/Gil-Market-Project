@@ -1,5 +1,6 @@
 {% extends 'shared/_MainLayout.html' %}
 {% load static %}
+{% load humanize %}
 
 {% block content %}
     <main>
@@ -18,7 +19,7 @@
                             {% endfor %}
                         </div>
                         <div class="col-sm-6 d-flex justify-content-center main-image">
-                            <img class="img-tags" src="{{ product.image.url }}" alt="">
+                            <img class="img-tags" src="{{ product.image.url }}" alt="{{ product.image.title }}">
                         </div>
                     </div>
                 </div>
@@ -36,11 +37,11 @@
                         {% if product.active is True %}
                             {% if product.discount is not 0 %}
                                 <div class="result-product-off"><span>{{ product.discount }}%</span>
-                                    <del>{{ product.price }}</del>
+                                    <del>{{ product.price|intcomma:False }}</del>
                                 </div>
                             {% endif %}
                             <div>
-                                <div class="price">{{ product.get_sale }}</div>
+                                <div class="price">{{ product.get_sale|intcomma:False }}</div>
                                 <span>تومان</span>
                             </div>
                             <form method="post" action="/add-user-order">

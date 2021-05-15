@@ -2,6 +2,7 @@ from django.db.models import Q
 from django.shortcuts import render
 import random
 
+from Gil_Order.models import Order
 from Gil_Product_Brand.models import ProductBrand
 from Gil_Products.models import Product
 from Gil_Products_Category.models import ProductCategory
@@ -17,11 +18,17 @@ def header(request, *args, **kwargs):
 
     category_list = ProductCategory.objects.all()
     brand = ProductBrand.objects.all()
+    open_order = Order.objects.filter(owner_id=request.user.id, is_paid=False).first()
+    count = 0
+    for item in open_order.orderdetail_set.all():
+        count += 1
 
     context = {
         'firstName': firstName,
         'categoryList': category_list,
-        'brand': brand
+        'brand': brand,
+        'count': count
+
     }
     return render(request, 'shared/Header.html', context)
 

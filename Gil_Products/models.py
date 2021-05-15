@@ -13,13 +13,13 @@ def get_filename_ext(filepath):
 
 def upload_image_path(instance, filename):
     name, ext = get_filename_ext(filename)
-    final_name = f"{instance.name_en}{ext}"
+    final_name = f"{instance.name_en}{ext}".replace(' ', '-')
     return f"products/{final_name}"
 
 
 def upload_gallery_path(instance, filename):
     name, ext = get_filename_ext(filename)
-    final_name = f"{instance.title}{ext}"
+    final_name = f"{instance.title}{ext}".replace(' ', '-')
     return f"galleries/{final_name}"
 
 
@@ -41,8 +41,6 @@ class ProductManager(models.Manager):
     def search(self, query):
         lookup = Q(name_fa__icontains=query) | Q(name_en__icontains=query) | Q(description__icontains=query)
         return Product.objects.filter(lookup).distinct()
-
-
 
 
 class Product(models.Model):

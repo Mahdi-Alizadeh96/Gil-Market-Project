@@ -1,4 +1,5 @@
 {% extends 'shared/_MainLayout.html' %}
+{% load humanize %}
 
 {% block content %}
     <main>
@@ -11,10 +12,11 @@
                             {% if order != None and details|length > 0 %}
                                 {% for detail in details %}
                                     <div class="shop-item-spi">
-                                        <a href=""><img src="{{ detail.product.image.url }}" alt=""></a>
+                                        <a href="/products/{{ detail.product.id }}/{{ detail.product.name_fa }}"><img
+                                                src="{{ detail.product.image.url }}" alt=""></a>
                                         <div>{{ detail.product.name_fa }}</div>
                                         <div class="shop-item-spi-price remove-border">
-                                            {{ detail.product.get_sale }}</div>
+                                            {{ detail.product.get_sale|intcomma:False }}</div>
                                         <div class="remove-product-box">
                                             <a class="btn remove-product" href="/remove-order-detail/{{ detail.id }}">
                                                 حذف کالا
@@ -34,7 +36,7 @@
                             </div>
                             <div class="all-sum">
                                 <div>مجموع کل (تومان) :</div>
-                                <div>{{ total }}</div>
+                                <div>{{ total|intcomma:False }}</div>
                             </div>
                         </div>
                     </div>

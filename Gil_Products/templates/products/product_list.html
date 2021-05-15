@@ -1,4 +1,5 @@
 {% extends 'shared/_MainLayout.html' %}
+{% load humanize %}
 
 {% block content %}
     <main>
@@ -41,11 +42,12 @@
                                             <div class="result-product-name">
                                                 {{ product.name_fa }}
                                             </div>
-                                            <div class="result-product-off"><span>{{ product.discount }}%</span>
-                                                <del>{{ product.price }}</del>
+                                            <div class="result-product-off">
+                                                <span>{{ product.discount }}%</span>
+                                                <del>{{ product.price|intcomma:False }}</del>
                                             </div>
                                             <div class="result-product-price">
-                                                <span>{{ product.get_sale }}</span><span>تومان</span>
+                                                <span>{{ product.get_sale|intcomma:False }}</span><span>تومان</span>
                                             </div>
                                         </div>
                                     </a>
@@ -57,7 +59,7 @@
                                             <img class="result-img" src="{{ product.image.url }}" alt="">
                                             <div class="result-product-name">{{ product.name_fa }}</div>
                                             <div class="result-product-price padd-butt">
-                                                <span>{{ product.get_sale }}</span><span>تومان</span>
+                                                <span>{{ product.get_sale|intcomma:False }}</span><span>تومان</span>
                                             </div>
                                         </div>
                                     </a>
