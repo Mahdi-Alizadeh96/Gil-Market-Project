@@ -1,5 +1,6 @@
 /*
     DJANGO Admin styles
+    Fuck
 */
 
 @import url(fonts.css);
@@ -99,7 +100,7 @@ body {
     margin: 0;
     padding: 0;
     font-size: 14px;
-    font-family: "Roboto", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
+    font-family: "Tanha", "Lucida Grande", "DejaVu Sans", "Bitstream Vera Sans", Verdana, Arial, sans-serif;
     color: var(--body-fg);
     background: var(--body-bg);
 }
@@ -476,7 +477,7 @@ input, textarea, select, .form-row p, form .button {
     margin: 2px 0;
     padding: 2px 3px;
     vertical-align: middle;
-    font-family: "Roboto", "Lucida Grande", Verdana, Arial, sans-serif;
+    font-family: "Tanha", "Lucida Grande", Verdana, Arial, sans-serif;
     font-weight: normal;
     font-size: 13px;
 }
@@ -705,7 +706,7 @@ td ul.errorlist + input, td ul.errorlist + select, td ul.errorlist + textarea {
 /* BREADCRUMBS */
 
 div.breadcrumbs {
-    background: var(--breadcrumbs-bg);
+    background: #4d0606;
     padding: 10px 40px;
     border: none;
     color: var(--breadcrumbs-fg);
@@ -1052,9 +1053,27 @@ table#change-history tbody th {
     padding: 10px 20px;
 }
 
-/*!*OWN CSS*!*/
+/*OWN CSS*/
 
 
-/*#header {*/
-/*    background: #f95304;*/
-/*}*/
+#header {
+    background: #ef5d24;
+}
+
+#branding h1, #branding h1 a:link, #branding h1 a:visited {
+    color: #c9f3ff;
+}
+
+.module h2, .module caption, .inline-group h2 {
+    background: #a9432c;
+}
+
+
+element.style {
+}
+
+#container > div {
+    flex-shrink: 0;
+}
+
+
