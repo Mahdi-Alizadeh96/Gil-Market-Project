@@ -7,8 +7,8 @@
 
 /* VARIABLE DEFINITIONS */
 :root {
-    --primary: #79aec8;
-    --secondary: #417690;
+    --primary: #d17b7b;
+    --secondary: #dd4949;
     --accent: #f5dd5d;
     --primary-fg: #fff;
 
@@ -27,7 +27,7 @@
     --breadcrumbs-bg: var(--primary);
 
     --link-fg: #447e9b;
-    --link-hover-color: #036;
+    --link-hover-color: #ef5d24;
     --link-selected-fg: #5b80b2;
 
     --hairline-color: #e8e8e8;
@@ -108,17 +108,19 @@ body {
 /* LINKS */
 
 a:link, a:visited {
-    color: var(--link-fg);
+    color: #333333;
     text-decoration: none;
     transition: color 0.15s, background 0.15s;
 }
 
 a:focus, a:hover {
     color: var(--link-hover-color);
+    text-decoration: none;
 }
 
 a:focus {
-    text-decoration: underline;
+    text-decoration: none;
+    color: #e35f5f;
 }
 
 a img {
@@ -126,12 +128,15 @@ a img {
 }
 
 a.section:link, a.section:visited {
-    color: var(--header-link-color);
+    color: #747474;
     text-decoration: none;
+    transition: all 0.2s;
 }
 
 a.section:focus, a.section:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    text-shadow: 2px 2px 5px #c4dce8;
+    transform: scale(1.05);
 }
 
 /* GLOBAL DEFAULTS */
@@ -535,7 +540,7 @@ a.button {
 .button:active, input[type=submit]:active, input[type=button]:active,
 .button:focus, input[type=submit]:focus, input[type=button]:focus,
 .button:hover, input[type=submit]:hover, input[type=button]:hover {
-    background: var(--button-hover-bg);
+    background: #e35f5f;
 }
 
 .button[disabled], input[type=submit][disabled], input[type=button][disabled] {
@@ -552,7 +557,7 @@ a.button {
 .button.default:active, input[type=submit].default:active,
 .button.default:focus, input[type=submit].default:focus,
 .button.default:hover, input[type=submit].default:hover {
-    background: var(--default-button-hover-bg);
+    background: #ef5d24;
 }
 
 .button[disabled].default,
@@ -593,13 +598,13 @@ input[type=button][disabled].default {
     font-weight: 400;
     font-size: 13px;
     text-align: left;
-    background: var(--primary);
+    /* background: var(--primary); */
     color: var(--header-link-color);
 }
 
 .module caption,
 .inline-group h2 {
-    font-size: 12px;
+    font-size: 20px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
@@ -706,15 +711,16 @@ td ul.errorlist + input, td ul.errorlist + select, td ul.errorlist + textarea {
 /* BREADCRUMBS */
 
 div.breadcrumbs {
-    background: #4d0606;
+    /* background: #4d0606; */
+    border-bottom: 5px solid #ef5d24;
     padding: 10px 40px;
     border: none;
-    color: var(--breadcrumbs-fg);
+    color: #e35f5f;
     text-align: left;
 }
 
 div.breadcrumbs a {
-    color: var(--breadcrumbs-link-fg);
+    color: #333333;
 }
 
 div.breadcrumbs a:focus, div.breadcrumbs a:hover {
@@ -837,6 +843,8 @@ table#change-history tbody th {
 #container > .main {
     display: flex;
     flex: 1 0 auto;
+    border-top: 5px solid #ef5d24;
+    padding-top: 20px;
 }
 
 .main > .content {
@@ -901,14 +909,14 @@ table#change-history tbody th {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 40px;
-    background: var(--header-bg);
-    color: var(--header-color);
+    padding: 25px 40px;
+    /* background: var(--header-bg); */
+    color: #121212;
     overflow: hidden;
 }
 
 #header a:link, #header a:visited {
-    color: var(--header-link-color);
+    color: #333333;
 }
 
 #header a:focus, #header a:hover {
@@ -1057,15 +1065,20 @@ table#change-history tbody th {
 
 
 #header {
-    background: #ef5d24;
+    /* background: #e35f5f; */
+    border-top: 5px solid #ef5d24;
+    border-bottom: 5px solid #ef5d24;
+
 }
 
 #branding h1, #branding h1 a:link, #branding h1 a:visited {
-    color: #c9f3ff;
+    color: #ef5d24;
 }
 
 .module h2, .module caption, .inline-group h2 {
-    background: #a9432c;
+    /* background: #a9432c; */
+    border-top: 2px solid #ef5d24;
+    border-bottom: 2px solid #ef5d24;
 }
 
 
@@ -1076,4 +1089,30 @@ element.style {
     flex-shrink: 0;
 }
 
+
+/* scrollbar  */
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    box-shadow: inset 0 0 3px grey; 
+    /* margin: 2px; */
+
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #ef5d24;
+    border-radius: 5px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #e35f5f;
+  }
 

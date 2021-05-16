@@ -92,12 +92,12 @@
 
 #nav-sidebar .current-app .section:link,
 #nav-sidebar .current-app .section:visited {
-    color: var(--header-color);
-    font-weight: bold;
+    /* color: var(--header-color); */
+    /* font-weight: bold; */
 }
 
 #nav-sidebar .current-model {
-    background: var(--selected-row);
+    background: #ffe2d6 ;
 }
 
 .main > #nav-sidebar + .content {
