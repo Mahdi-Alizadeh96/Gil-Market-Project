@@ -1,7 +1,38 @@
 from django import forms
 from django.core import validators
-
 from base_user_account.models import User
+
+
+class EditUserForm(forms.Form):
+    first_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"placeholder": "نام", "class": "form-control input-border"}
+        )
+    )
+    last_name = forms.CharField(
+        widget=forms.TextInput(
+            attrs={"placeholder": "نام خانوادگی", "class": "form-control input-border"}
+        )
+    )
+    phone = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'placeholder': 'شماره تلفن', 'class': 'form-control input-border'}),
+        validators=[
+            validators.MaxLengthValidator(limit_value=11, message='مقدار شماره نمی تواند بیشتر از 11 رقم باشد'),
+            validators.MinLengthValidator(limit_value=10, message='مقدار شماره نمی تواند کمتر از 10 رقم باشد')
+        ]
+
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(
+            attrs={'placeholder': 'ایمیل (اختیاری)', 'class': 'form-control input-border'}),
+        required=False
+    )
+    address = forms.CharField(
+        widget=forms.TextInput(
+            attrs={'placeholder': 'آدرس', 'class': 'form-control input-border'}),
+        required=False
+    )
 
 
 class LoginForm(forms.Form):

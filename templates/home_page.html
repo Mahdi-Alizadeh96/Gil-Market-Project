@@ -1,5 +1,6 @@
 {% extends 'shared/_MainLayout.html' %}
 {% load static %}
+{% load humanize %}
 
 <!-- Main Content -->
 {% block content %}
@@ -56,6 +57,13 @@
                                     style="height: 230px; width: 230px"
                                     src="{{ productoff.image.url }}"
                                     alt="{{ productoff.image.title }}">
+                                <div class="result-product-off">
+                                    <span>{{ productoff.discount }}%</span>
+                                    <del>{{ productoff.price|intcomma:False }}</del>
+                                </div>
+                                <div class="result-product-price">
+                                    <span>{{ productoff.get_sale|intcomma:False }}</span><span>تومان</span>
+                                </div>
                             </a>
                         </div>
                     {% endfor %}

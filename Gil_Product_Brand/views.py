@@ -11,6 +11,6 @@ def product_brand(request, *args, **kwargs):
         raise Http404('صفحه مورد نظر یافت نشد')
 
     context = {
-        'brand': brand
+        'brand': brand,
     }
     return render(request, 'brand/brand.html', context)

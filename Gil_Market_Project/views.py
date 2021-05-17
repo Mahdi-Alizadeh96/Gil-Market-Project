@@ -13,15 +13,15 @@ from base_user_account.models import User
 # header code behind
 def header(request, *args, **kwargs):
     firstName = None
+    count = 0
+    open_order = Order.objects.filter(owner_id=request.user.id, is_paid=False).first()
     if request.user.is_authenticated:
         firstName = request.user.first_name
+        for item in open_order.orderdetail_set.all():
+            count += 1
 
     category_list = ProductCategory.objects.all()
     brand = ProductBrand.objects.all()
-    open_order = Order.objects.filter(owner_id=request.user.id, is_paid=False).first()
-    count = 0
-    for item in open_order.orderdetail_set.all():
-        count += 1
 
     context = {
         'firstName': firstName,

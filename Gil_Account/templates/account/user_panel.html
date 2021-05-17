@@ -1,0 +1,193 @@
+{% extends 'shared/_MainLayout.html' %}
+
+{% block content %}
+    <main>
+        <div class="container">
+            <section class="admin-panel">
+                <!-- about tabs -->
+                <div class="row about-tabs">
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs navs-pan" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-edi active" data-toggle="tab" href="#user-control-panel">حساب
+                                کاربری</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-edi" data-toggle="tab" href="#archive-buy">خرید های گذشته</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link nav-link-edi" data-toggle="tab" href="#my-comments">نظرات</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content tab-content-edi" style="display: block;">
+                        <div id="user-control-panel" class="container tab-pane active"><br>
+                            <div class="user-inf-tab">
+                                <span class="material-icons md-46 icn-org"> manage_accounts</span>
+                                <span>نام کاربر</span>
+                            </div>
+                            <div class="user-information-box">
+                                <div>{{ user.first_name }} {{ user.last_name }}</div>
+                                <div>{{ user.phone }}</div>
+                                {% if user.email %}
+                                    <div>{{ user.email }}</div>
+                                {% else %}
+                                    <div>ایمیل : (خالی)</div>
+                                {% endif %}
+                                {% if user.address %}
+                                    <div>{{ user.address }}</div>
+                                {% else %}
+                                    <div>آدرس : (خالی)</div>
+                                {% endif %}
+                                <a href="/user/edit">
+                                    <div class="edit-user-information">
+                                        <span class="material-icons md-18 icn-org">settings</span>
+                                        ویرایش اطلاعات
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="archive-buy" class="container tab-pane fade"><br>
+                            <div class="archive-buy-box">
+                                <div class="last-shop">
+                                    <div class="shop-items">
+                                        <div class="shop-item-spi">
+                                            <img src="https://via.placeholder.com/100x100.png" alt="">
+                                            <div>محصول فلانی فلانی فلانی فلانی x33</div>
+                                            <div class="shop-item-spi-price">55,888,230</div>
+                                        </div>
+                                        <div class="shop-item-spi">
+                                            <img src="https://via.placeholder.com/100x100.png" alt="">
+                                            <div>محصول فلانی فلانی فلانی فلانی x33</div>
+                                            <div class="shop-item-spi-price">55,888,230</div>
+                                        </div>
+                                        <div class="shop-item-spi">
+                                            <img src="https://via.placeholder.com/100x100.png" alt="">
+                                            <div>محصول فلانی فلانی فلانی فلانی x33</div>
+                                            <div class="shop-item-spi-price">55,888,230</div>
+                                        </div>
+                                        <div class="shop-item-spi">
+                                            <img src="https://via.placeholder.com/100x100.png" alt="">
+                                            <div>محصول فلانی فلانی فلانی فلانی x33</div>
+                                            <div class="shop-item-spi-price">55,888,230</div>
+                                        </div>
+                                    </div>
+                                    <div class="shop-info">
+                                        <div>1400/1/25</div>
+                                        <div class="all-sum">
+                                            <div>مجموع کل :</div>
+                                            <div>50,000,000</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="last-shop">
+                                    <div class="shop-items">
+                                        <div class="shop-item-spi">
+                                            <img src="https://via.placeholder.com/100x100.png" alt="">
+                                            <div>محصول فلانی فلانی فلانی فلانی x33</div>
+                                            <div class="shop-item-spi-price">55,888,230</div>
+                                        </div>
+                                        <div class="shop-item-spi">
+                                            <img src="https://via.placeholder.com/100x100.png" alt="">
+                                            <div>محصول فلانی فلانی فلانی فلانی x33</div>
+                                            <div class="shop-item-spi-price">55,888,230</div>
+                                        </div>
+                                        <div class="shop-item-spi">
+                                            <img src="https://via.placeholder.com/100x100.png" alt="">
+                                            <div>محصول فلانی فلانی فلانی فلانی x33</div>
+                                            <div class="shop-item-spi-price">55,888,230</div>
+                                        </div>
+                                        <div class="shop-item-spi">
+                                            <img src="https://via.placeholder.com/100x100.png" alt="">
+                                            <div>محصول فلانی فلانی فلانی فلانی x33</div>
+                                            <div class="shop-item-spi-price">55,888,230</div>
+                                        </div>
+                                    </div>
+                                    <div class="shop-info">
+                                        <div>1400/1/25</div>
+                                        <div class="all-sum">
+                                            <div>مجموع کل :</div>
+                                            <div>50,000,000</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="my-comments" class="container tab-pane fade"><br>
+                            <div class="comm-control-box">
+                                <div class="user-comments-titel">نظرات شما</div>
+                                <div class="user-comments">
+                                    <div class="user-message-box">
+                                        <div class="message-box-product-name">نام محصول</div>
+                                        <div class="message-box-comment-date">1400/1/6</div>
+                                        <div class="message-content">
+                                            <p class="message-box">لورم ایپسوم متن ساختگی با تولید سادگی
+                                                نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک
+                                                است، چاپگرها و متون بلکه روزنامه و مجله در ستون و
+                                                سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی
+                                                مورد نیاز، و کاربردهای متنوع با هدف بهبود
+                                                ابزارهای کاربردی می باشد، کتابهای زیادی در
+                                                شصت و سه درصد گذشته حال و آینده، شناخت فراوان
+                                                جامعه و متخصصان را می طلبد، تا با نرم افزارها
+                                                شناخت بیشتری را برای طراحان رایانه ای علی الخصوص
+                                                طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در
+                                                این صورت می توان امید داشت که تمام و دشواری موجود در ارائه
+                                                راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز
+                                                شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته
+                                                اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="user-message-box">
+                                        <div class="message-box-product-name">نام محصول</div>
+                                        <div class="message-box-comment-date">1400/1/6</div>
+                                        <div class="message-content">
+                                            <p class="message-box">لورم ایپسوم متن ساختگی با تولید سادگی
+                                                نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک
+                                                است، چاپگرها و متون بلکه روزنامه و مجله در ستون و
+                                                سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی
+                                                مورد نیاز، و کاربردهای متنوع با هدف بهبود
+                                                ابزارهای کاربردی می باشد، کتابهای زیادی در
+                                                شصت و سه درصد گذشته حال و آینده، شناخت فراوان
+                                                جامعه و متخصصان را می طلبد، تا با نرم افزارها
+                                                شناخت بیشتری را برای طراحان رایانه ای علی الخصوص
+                                                طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در
+                                                این صورت می توان امید داشت که تمام و دشواری موجود در ارائه
+                                                راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز
+                                                شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته
+                                                اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="user-message-box">
+                                        <div class="message-box-product-name">نام محصول</div>
+                                        <div class="message-box-comment-date">1400/1/6</div>
+                                        <div class="message-content">
+                                            <p class="message-box">لورم ایپسوم متن ساختگی با تولید سادگی
+                                                نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک
+                                                است، چاپگرها و متون بلکه روزنامه و مجله در ستون و
+                                                سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی
+                                                مورد نیاز، و کاربردهای متنوع با هدف بهبود
+                                                ابزارهای کاربردی می باشد، کتابهای زیادی در
+                                                شصت و سه درصد گذشته حال و آینده، شناخت فراوان
+                                                جامعه و متخصصان را می طلبد، تا با نرم افزارها
+                                                شناخت بیشتری را برای طراحان رایانه ای علی الخصوص
+                                                طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در
+                                                این صورت می توان امید داشت که تمام و دشواری موجود در ارائه
+                                                راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز
+                                                شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته
+                                                اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+{% endblock %}

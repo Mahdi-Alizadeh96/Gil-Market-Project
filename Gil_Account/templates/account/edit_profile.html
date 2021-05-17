@@ -1,0 +1,50 @@
+{% extends 'shared/_MainLayout.html' %}
+
+{% block content %}
+    <main>
+        <div class="container">
+            <section class="sign-in-main">
+                <div class="jumbotron jumbotron-sign-up mt-5">
+                    <span class="material-icons md-18 icn-org">border_color</span>
+                    <form method="post" action="">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            {{ edit_form.first_name }}
+                            {% for error in edit_form.first_name.errors %}
+                                <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            {{ edit_form.last_name }}
+                            {% for error in edit_form.last_name.errors %}
+                                <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            {{ edit_form.phone }}
+                            {% for error in edit_form.phone.errors %}
+                                <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            {{ edit_form.email }}
+                            {% for error in edit_form.email.errors %}
+                                <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div class="form-group">
+                            {{ edit_form.address }}
+                            {% for error in edit_form.address.errors %}
+                                <p class="text-danger">{{ error }}</p>
+                            {% endfor %}
+                        </div>
+                        <div>
+                            <input type="submit" class="btn btn-sub" value="ثبت">
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+{% endblock %}

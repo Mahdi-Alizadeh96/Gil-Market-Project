@@ -1,7 +1,10 @@
+from django.contrib.auth.decorators import login_required
+from django.http import Http404
+
 from base_user_account.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
-from .forms import LoginForm, RegisterForm
+from .forms import LoginForm, RegisterForm, EditUserForm
 
 
 def login_user(request):
@@ -50,3 +53,40 @@ def register(request):
 def log_out(request):
     logout(request)
     return redirect('/login')
+
+
+@login_required(login_url='/login')
+def user_panel(request):
+    user_id = request.user.id
+    user = User.objects.get(id=user_id)
+    context = {'user': user}
+    return render(request, 'account/user_panel.html', context)
+
+
+@login_required(login_url='/login')
+def edit_profile(request):
+    user_id = request.user.id
+    user = User.objects.get(id=user_id)
+    if user is None:
+        raise Http404('کاربر مورد نظر یافت نشد')
+
+    edit_user_form = EditUserForm(request.POST or None,
+                                  initial={'first_name': user.first_name, 'last_name': user.last_name,
+                                           'phone': user.phone, 'email': user.email, 'address': user.address}
+                                  )
+    if edit_user_form.is_valid():
+        first_name = edit_user_form.cleaned_data.get('first_name')
+        last_name = edit_user_form.cleaned_data.get('last_name')
+        phone = edit_user_form.cleaned_data.get('phone')
+        email = edit_user_form.cleaned_data.get('email')
+        address = edit_user_form.cleaned_data.get('address')
+
+        user.first_name = first_name
+        user.last_name = last_name
+        user.phone = phone
+        user.email = email
+        user.address = address
+        user.save()
+
+    context = {'edit_form': edit_user_form}
+    return render(request, 'account/edit_profile.html', context)
