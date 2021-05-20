@@ -606,6 +606,7 @@ footer {
   padding-bottom: 2%;
   border-top: 1px solid #80808041;
   border-bottom: 1px solid #80808041;
+  min-height: 400px;
 }
 .result-one-show {
   width: 100%;
