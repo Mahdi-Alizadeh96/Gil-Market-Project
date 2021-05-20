@@ -56,6 +56,7 @@ class Product(models.Model):
                                    verbose_name="دسته بندی ها")
     brands = models.ForeignKey(ProductBrand, on_delete=models.CASCADE, null=True, blank=True,
                                verbose_name="برندها")
+    attributes = models.TextField(verbose_name='ویژگی های محصول', null=True)
 
     objects = ProductManager()
 
