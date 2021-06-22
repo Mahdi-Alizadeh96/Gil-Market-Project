@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Product, Gallery
+from .models import Product
 admin.site.site_header = "پنل مدیریت سایت"
 
 class ProductAdmin(admin.ModelAdmin):
@@ -12,4 +12,3 @@ class ProductAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Product, ProductAdmin)
-admin.site.register(Gallery)

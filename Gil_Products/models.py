@@ -17,12 +17,6 @@ def upload_image_path(instance, filename):
     return f"products/{final_name}"
 
 
-def upload_gallery_path(instance, filename):
-    name, ext = get_filename_ext(filename)
-    final_name = f"{instance.title}{ext}".replace(' ', '-')
-    return f"galleries/{final_name}"
-
-
 class ProductManager(models.Manager):
     def get_by_id(self, product_id):
         qs = self.get_queryset().filter(id=product_id)
@@ -35,8 +29,7 @@ class ProductManager(models.Manager):
         return self.get_queryset().filter(categories__name__iexact=category_name)
 
     def get_product_by_category_brand(self, brand_name, category_name):
-        return self.get_queryset().filter(brands__name__iexact=brand_name,
-                                          categories__name__iexact=category_name)
+        return self.get_queryset().filter(brands__name__iexact=brand_name, categories__name__iexact=category_name)
 
     def search(self, query):
         lookup = Q(name_fa__icontains=query) | Q(name_en__icontains=query) | Q(description__icontains=query)
@@ -50,12 +43,14 @@ class Product(models.Model):
     price = models.BigIntegerField(verbose_name='قیمت')
     discount = models.IntegerField(null=True, blank=True, default=0, verbose_name='درصد تخفیف')
     description = models.TextField(verbose_name='توضیحات محصول')
-    image = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='تصویر')
+    image = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='تصویر اصلی')
+    image1 = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='1تصویر')
+    image2 = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='2تصویر')
+    image3 = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='3تصویر')
+    image4 = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='4تصویر')
     active = models.BooleanField(default=False, verbose_name='موجود / ناموجود')
-    categories = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, null=True, blank=True,
-                                   verbose_name="دسته بندی ها")
-    brands = models.ForeignKey(ProductBrand, on_delete=models.CASCADE, null=True, blank=True,
-                               verbose_name="برندها")
+    categories = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, null=True, blank=True, verbose_name="دسته بندی ها")
+    brands = models.ForeignKey(ProductBrand, on_delete=models.CASCADE, null=True, blank=True, verbose_name="برندها")
     attributes = models.TextField(verbose_name='ویژگی های محصول', null=True)
 
     objects = ProductManager()
@@ -70,19 +65,3 @@ class Product(models.Model):
     def get_sale(self):
         price = int(self.price * (100 - self.discount) / 100)
         return price
-
-
-class Gallery(models.Model):
-    title = models.CharField(max_length=50, verbose_name='عنوان')
-    image = models.ImageField(upload_to=upload_gallery_path, null=True, blank=True, verbose_name='تصویر')
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, null=True, blank=True, verbose_name='محصول')
-    brand = models.ForeignKey(ProductBrand, on_delete=models.CASCADE, null=True, blank=True, verbose_name='برند')
-    category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, null=True, blank=True,
-                                 verbose_name='دسته بندی')
-
-    class Meta:
-        verbose_name = 'تصویر'
-        verbose_name_plural = 'تصاویر'
-
-    def __str__(self):
-        return self.title

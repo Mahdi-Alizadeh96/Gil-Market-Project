@@ -13,10 +13,10 @@
                 <div class="product-images-part">
                     <div class="row d-flex justify-content-center align-items-center">
                         <div class="col-sm-6 d-flex justify-content-center flex-wrap four-images">
-                            {% for gallery in galleries %}
-                                <div class="col-sm-6"><img class="img-tags" src="{{ gallery.image.url }}"
-                                                           alt="{{ gallery.image.title }}"></div>
-                            {% endfor %}
+                                <div class="col-sm-6"><img class="img-tags" src="{{ product.image1.url }}" alt="{{ product.image1.title }}"></div>
+                                <div class="col-sm-6"><img class="img-tags" src="{{ product.image2.url }}" alt="{{ product.image2.title }}"></div>
+                                <div class="col-sm-6"><img class="img-tags" src="{{ product.image3.url }}" alt="{{ product.image3.title }}"></div>
+                                <div class="col-sm-6"><img class="img-tags" src="{{ product.image4.url }}" alt="{{ product.image4.title }}"></div>
                         </div>
                         <div class="col-sm-6 d-flex justify-content-center main-image">
                             <img class="img-tags" src="{{ product.image.url }}" alt="{{ product.image.title }}">

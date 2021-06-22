@@ -5,7 +5,7 @@ from Gil_Comment.forms import CommentForm
 from Gil_Comment.models import Comments
 from Gil_Order.forms import UserNewOrderForm
 from Gil_Product_Brand.models import ProductBrand
-from .models import Product, Gallery
+from .models import Product
 from django.http import Http404
 from Gil_Products_Category.models import ProductCategory
 
@@ -48,7 +48,6 @@ def product_detail(request, *args, **kwargs):
     if product is None:
         raise Http404('محصول مورد نظر یافت نشد!')
 
-    galleries = Gallery.objects.filter(product_id=selected_product_id)
     comments = product.comments.filter(active=True)
 
     comment_form = CommentForm(request.POST or None)
@@ -60,7 +59,6 @@ def product_detail(request, *args, **kwargs):
 
     context = {
         'product': product,
-        'galleries': galleries,
         'comments': comments,
         'comment_form': comment_form,
         'new_order_form': new_order_form

@@ -44,11 +44,11 @@ def home_page(request):
     slider = Slider.objects.all()
     advertise = Advertise.objects.first()
     category_list = ProductCategory.objects.all()
-    discount = Product.objects.filter(~Q(discount=0), active=True)
-    random_discount = random.sample(list(discount), 3)
+    # discount = Product.objects.filter(~Q(discount=0), active=True)
+    # random_discount = random.sample(list(discount), 3)
     context = {
         'categoryList': category_list,
-        'discount': random_discount,
+        # 'discount': random_discount,
         'sliders': slider,
         'advertise': advertise,
 
