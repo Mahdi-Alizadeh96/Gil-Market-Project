@@ -35,7 +35,7 @@
                         {% for product in object_list %}
                             {% if product.active is True and product.discount is not 0 %}
                                 <li class="result-li available-product-off">
-                                    <a href="/products/{{ product.id }}/{{ product.name_fa }}" class="result-link">
+                                    <a href="{% url 'product:product_detail' product.id product.name_fa %}" class="result-link">
                                         <div class="result-one-show">
                                             <img class="result-img" src="{{ product.image.url }}"
                                                  alt="">
@@ -54,7 +54,7 @@
                                 </li>
                             {% elif product.active is True and product.discount is 0 %}
                                 <li class="result-li available-product">
-                                    <a href="/products/{{ product.id }}/{{ product.name_fa }}" class="result-link">
+                                    <a href="{% url 'product:product_detail' product.id product.name_fa %}" class="result-link">
                                         <div class="result-one-show">
                                             <img class="result-img" src="{{ product.image.url }}" alt="">
                                             <div class="result-product-name">{{ product.name_fa }}</div>
@@ -66,7 +66,7 @@
                                 </li>
                             {% else %}
                                 <li class="result-li unavailable-product">
-                                    <a href="/products/{{ product.id }}/{{ product.name_fa }}" class="result-link">
+                                    <a href="{% url 'product:product_detail' product.id product.name_fa %}" class="result-link">
                                         <div class="result-one-show">
                                             <img class="result-img" src="{{ product.image.url }}"
                                                  alt="">

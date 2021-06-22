@@ -52,7 +52,7 @@
                     {% for productoff in discount %}
                         <div class="col-sm-3 off-link-item ">
                             <a
-                                    href="/products/{{ productoff.id }}/{{ productoff.name_fa }}"><img
+                                    href="{% url 'product:product_detail' productoff.id productoff.name_fa %}"><img
                                     class="best-off-link"
                                     style="height: 230px; width: 230px"
                                     src="{{ productoff.image.url }}"
@@ -74,7 +74,7 @@
             <div class="row mt-3">
                 {% for category in categoryList %}
                     <div class="col-sm-4 divi-parts">
-                        <a href="/products/{{ category.name }}">
+                        <a href="{% url 'product:p_category' category.name %}">
                             <img class="d-link-nav"
                                  src="{{ category.image.url }}"
                                  alt="pic">

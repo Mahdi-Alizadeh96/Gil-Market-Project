@@ -15,7 +15,7 @@
                     {% for category in brand.categories.all %}
                         <div class="brand-product-divide">
                             <fieldset>
-                                <legend><a href="/result/{{ brand.name }}/{{ category.name }}">{{ category.title }}</a>
+                                <legend><a href="{% url 'product:p_category_brand' brand.name category.name %}">{{ category.title }}</a>
                                 </legend>
                                 <div>
 

@@ -41,7 +41,7 @@
                                 {% else %}
                                     <div>آدرس : (خالی)</div>
                                 {% endif %}
-                                <a href="/user/edit">
+                                <a href="{% url 'account:edit_profile' %}">
                                     <div class="edit-user-information">
                                         <span class="material-icons md-18 icn-org">settings</span>
                                         ویرایش اطلاعات

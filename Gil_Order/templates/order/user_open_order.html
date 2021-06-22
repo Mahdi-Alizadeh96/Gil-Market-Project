@@ -12,7 +12,7 @@
                             {% if order != None and details|length > 0 %}
                                 {% for detail in details %}
                                     <div class="shop-item-spi">
-                                        <a href="/products/{{ detail.product.id }}/{{ detail.product.name_fa }}"><img
+                                        <a href="{% url 'product:product_detail' detail.product.id detail.product.name_fa %}"><img
                                                 src="{{ detail.product.image.url }}" alt=""></a>
                                         <div>{{ detail.product.name_fa }}</div>
                                         <div class="shop-item-spi-price remove-border">

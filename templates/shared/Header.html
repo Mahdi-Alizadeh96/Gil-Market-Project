@@ -8,20 +8,20 @@
                 <!-- Loging panel -->
                 {% if not request.user.is_authenticated %}
                     <div id="login-panel" class="right-panel-login" style="display: flex;">
-                        <a id="sign-in-link" class="sign-in-link signs-link" href="/login"><span
+                        <a id="sign-in-link" class="sign-in-link signs-link" href="{% url 'account:login' %}"><span
                                 class="material-icons md-18 icn-org">login</span>ورود</a>
 
-                        <a id="sign-up-link" class="sign-up-link signs-link" href="/register"><span
+                        <a id="sign-up-link" class="sign-up-link signs-link" href="{% url 'account:register' %}"><span
                                 class="material-icons md-18 icn-org">create</span>ثبت نام</a>
 
                     </div>
                 {% else %}
                     <!-- User panel   -->
                     <div id="user-panel" class="right-panel-user" style="display: flex;">
-                        <a id="sign-in-link" class="sign-in-link signs-link" href="/log-out"><span
+                        <a id="sign-in-link" class="sign-in-link signs-link" href="{% url 'account:log-out' %}"><span
                                 class="material-icons md-18 icn-org">logout</span>خروج</a>
 
-                        <a id="user-link" class="user-link signs-link" href="/user"><span
+                        <a id="user-link" class="user-link signs-link" href="{% url 'account:user_panel' %}"><span
                                 class="material-icons md-18 icn-org">person_outline</span>{{ firstName }}
                         </a>
                     </div>
@@ -57,7 +57,7 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">محصولات</a>
                         <div class="dropdown-menu">
                             {% for category in categoryList %}
-                                <a class="dropdown-item" href="/products/{{ category.name }}">{{ category.title }}</a>
+                                <a class="dropdown-item" href="{% url 'product:p_category' category.name %}">{{ category.title }}</a>
                             {% endfor %}
                         </div>
                     </li>
@@ -66,12 +66,12 @@
                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">برند ها</a>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             {% for brands in brand %}
-                                <a class="dropdown-item" href="/brands/{{ brands.name }}">{{ brands.title }}</a>
+                                <a class="dropdown-item" href="{% url 'brand:p_brand' brands.name %}">{{ brands.title }}</a>
                             {% endfor %}
                         </div>
                     </li>
                     <li class="nav-item main-menu-text">
-                        <a class="nav-link main-menu-link" href="/result/discount">تخفیف ها</a>
+                        <a class="nav-link main-menu-link" href="{% url 'product:discount' %}">تخفیف ها</a>
                     </li>
             </div>
             </li>
