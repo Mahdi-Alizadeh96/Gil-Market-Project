@@ -17,8 +17,9 @@ def header(request, *args, **kwargs):
     open_order = Order.objects.filter(owner_id=request.user.id, is_paid=False).first()
     if request.user.is_authenticated:
         firstName = request.user.first_name
-        for item in open_order.orderdetail_set.all():
-            count += 1
+        if open_order:
+            for item in open_order.orderdetail_set.all():
+                count += 1
 
     category_list = ProductCategory.objects.all()
     brand = ProductBrand.objects.all()
@@ -44,11 +45,11 @@ def home_page(request):
     slider = Slider.objects.all()
     advertise = Advertise.objects.first()
     category_list = ProductCategory.objects.all()
-    # discount = Product.objects.filter(~Q(discount=0), active=True)
-    # random_discount = random.sample(list(discount), 3)
+    discount = Product.objects.filter(~Q(discount=0), active=True)
+    random_discount = random.sample(list(discount), 3)
     context = {
         'categoryList': category_list,
-        # 'discount': random_discount,
+        'discount': random_discount,
         'sliders': slider,
         'advertise': advertise,
 

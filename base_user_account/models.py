@@ -11,15 +11,14 @@ class UserManager(BaseUserManager):
             raise ValueError('please enter your first name')
         if not last_name:
             raise ValueError('please enter your last name')
-        user = self.model(phone=phone, first_name=first_name, last_name=last_name, email=self.normalize_email(email),
-                          address=address)
+        user = self.model(phone=phone, first_name=first_name, last_name=last_name, email=self.normalize_email(email), address=address)
         user.set_password(password)
         user.save(using=self._db)
         return user
 
     def create_superuser(self, phone, first_name, last_name, email, password):
-        user = self.create_user(phone=phone, first_name=first_name, last_name=last_name, email=email, address=None,
-                                password=password)
+        user = self.create_user(phone=phone, first_name=first_name, last_name=last_name, email=email, address=None, password=password)
+        user.is_superuser = True
         user.is_admin = True
         user.save(using=self._db)
         return user
@@ -32,8 +31,9 @@ class User(AbstractBaseUser):
     email = models.EmailField(null=True, blank=True, verbose_name='ایمیل')
     phone = models.CharField(max_length=15, unique=True, verbose_name='شماره تلفن')
     address = models.CharField(max_length=350, null=True, blank=True, verbose_name='آدرس')
-    is_active = models.BooleanField(default=True, verbose_name='فعال / غیر فعال')
-    is_admin = models.BooleanField(default=False, verbose_name='ادمین بودن / نبودن')
+    is_superuser = models.BooleanField(default=False, verbose_name='سوپر ادمین')
+    is_admin = models.BooleanField(default=False, verbose_name='ادمین')
+    is_active = models.BooleanField(default=True, verbose_name='کاربر فعال')
     USERNAME_FIELD = 'phone'
     REQUIRED_FIELDS = ['first_name', 'last_name', 'email']  # another field ask you in createsuperuser
     objects = UserManager()

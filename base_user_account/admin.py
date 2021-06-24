@@ -8,12 +8,12 @@ from .models import User
 class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreateForm
-    list_display = ('first_name', 'last_name', 'phone', 'email')
+    list_display = ('first_name', 'last_name', 'phone', 'is_admin', 'email')
     list_filter = ('phone', 'is_active')
     fieldsets = (
         ('اطلاعات کاربر', {'fields': ('phone', 'password', 'first_name', 'last_name')}),
         ('دیگر اطلاعات شخصی', {'fields': ('email', 'address')}),
-        ('مجوزها', {'fields': ('is_admin', 'is_active')})
+        ('مجوزها', {'fields': ('is_superuser', 'is_admin', 'is_active')})
     )
 
     add_fieldsets = (
