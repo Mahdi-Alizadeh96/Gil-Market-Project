@@ -26,6 +26,7 @@ urlpatterns = [
     path('', include('Gil_Order.urls')),
     path('', include('Gil_Products.urls')),
     path('', include('Gil_Product_Brand.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('header', header, name="header"),
     path('footer', footer, name="footer"),
 

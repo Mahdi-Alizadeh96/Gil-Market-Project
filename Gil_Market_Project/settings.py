@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django_render_partial',
+    'ckeditor',
+    'ckeditor_uploader',
 
     # our applications
     'base_user_account',
@@ -135,6 +137,14 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "static_cdn" / "media_root"
+
+CKEDITOR_UPLOAD_PATH = 'uploadFiles/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Advanced',
+    },
+}
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

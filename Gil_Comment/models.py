@@ -4,8 +4,7 @@ from Gil_Products.models import Product
 
 
 class Comments(models.Model):
-    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments', null=True,
-                                verbose_name='نام محصول')
+    product = models.ForeignKey(Product, on_delete=models.CASCADE, related_name='comments', null=True, verbose_name='نام محصول')
     name = models.CharField(max_length=150, verbose_name="نام کاربر")
     message = models.TextField(verbose_name='متن پیام')
     postedTime = models.DateTimeField(auto_now_add=True, verbose_name='زمان ارسال')

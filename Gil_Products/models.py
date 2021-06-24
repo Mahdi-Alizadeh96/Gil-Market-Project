@@ -3,6 +3,7 @@ from django.db.models import Q
 from django.db import models
 from Gil_Product_Brand.models import ProductBrand
 from Gil_Products_Category.models import ProductCategory
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 def get_filename_ext(filepath):
@@ -42,7 +43,7 @@ class Product(models.Model):
     year = models.IntegerField(verbose_name='سال تولید')
     price = models.BigIntegerField(verbose_name='قیمت')
     discount = models.IntegerField(null=True, blank=True, default=0, verbose_name='درصد تخفیف')
-    description = models.TextField(verbose_name='توضیحات محصول')
+    description = RichTextUploadingField(verbose_name='توضیحات محصول')
     image = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='تصویر اصلی')
     image1 = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='1تصویر')
     image2 = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='2تصویر')
