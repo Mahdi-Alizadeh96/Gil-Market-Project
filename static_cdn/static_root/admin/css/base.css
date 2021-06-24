@@ -1051,14 +1051,3 @@ table#change-history tbody th {
 .popup #header {
     padding: 10px 20px;
 }
-
-/* Own CSS */
-/* 
-#header {
-    background: #0361f6;
-}
-
-:root {
-    --primary: #00abff;
-    --selected-row: #d3ecff;
-} */
