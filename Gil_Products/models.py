@@ -4,6 +4,9 @@ from django.db.models import Q
 from django.db import models
 from Gil_Product_Brand.models import ProductBrand
 from Gil_Products_Category.models import ProductCategory
+from django.contrib.contenttypes.fields import GenericRelation
+from comment.models import Comment
+
 
 
 def get_filename_ext(filepath):
@@ -53,6 +56,7 @@ class Product(models.Model):
     categories = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, null=True, blank=True, verbose_name="دسته بندی ها")
     brands = models.ForeignKey(ProductBrand, on_delete=models.CASCADE, null=True, blank=True, verbose_name="برندها")
     attributes = models.TextField(verbose_name='ویژگی های محصول', null=True)
+    comments = GenericRelation(Comment)
 
     objects = ProductManager()
 

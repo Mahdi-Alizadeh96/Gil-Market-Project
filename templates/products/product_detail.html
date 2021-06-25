@@ -1,4 +1,5 @@
 {% extends 'shared/_MainLayout.html' %}
+{% load comment_tags %}
 {% load static %}
 {% load humanize %}
 
@@ -90,94 +91,8 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div id="Comments" class="container tab-pane fade w-100"><br>
-                            <div class="Comments-part">
-                                <div class="add-Comment">
-                                    <div class="write-your-comment"><h5>نظر خود را بنویسید</h5></div>
-                                    <form method="post">
-                                        {% csrf_token %}
-                                        <div class="form-group">
-                                            {{ comment_form.name }}
-                                            {{ comment_form.message }}
-                                            <button type="submit" class="btn mt-2 input-border btn-sub"
-                                                    data-toggle="modal" data-target="#submitModal2">ارسال
-                                            </button>
-
-                                            <!-- The Modal 1-->
-                                            <div class="modal fade" id="submitModal1">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-
-                                                        <!-- Modal Header -->
-                                                        <div class="modal-header">
-                                                            <!-- <h4 class="modal-title">با تشکر از نظر شما</h4> Removed -->
-                                                            <button type="button" class="close modal-close"
-                                                                    data-dismiss="modal">×
-                                                            </button>
-                                                        </div>
-
-                                                        <!-- Modal body -->
-                                                        <div class="modal-body">
-                                                            <p class="modal-text">نظر شما پس از بررسی ثبت خواهد
-                                                                شد.</p>
-                                                        </div>
-                                                        {##}
-                                                        <!-- Modal footer -->
-                                                        <div class="modal-footer">
-                                                            <span class="material-icons success-comment-tick md-42">check_circle</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- The Modal 1 End-->
-                                            <!-- The Modal 2-->
-                                            <div class="modal fade" id="submitModal2">
-                                                <div class="modal-dialog">
-                                                    <div class="modal-content">
-
-                                                        <!-- Modal Header -->
-                                                        <div class="modal-header">
-                                                            <button type="button" class="close modal-close"
-                                                                    data-dismiss="modal">×
-                                                            </button>
-                                                        </div>
-
-                                                        <!-- Modal body -->
-                                                        <div class="modal-body">
-                                                            <p class="modal-text">برای ثبت نظر لطفا وارد سایت
-                                                                شوید.</p>
-                                                        </div>
-
-                                                        <!-- Modal footer -->
-                                                        <div class="modal-footer">
-                                                            <a href="sign-in.html" target="_blank">
-                                                                <button type="button" class="btn btn-sub">ورود
-                                                                </button>
-                                                            </a>
-                                                        </div>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <!-- The Modal 2 End-->
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                            <div id="old-comments" class="old-comments">
-                                <h3>دیدگاه دیگران</h3>
-                            </div>
-                            {% for comment in comments %}
-                                <div class="other-user-comments">
-                                    <div class="other-user-comment-box">
-                                        <div class="user-name-comment">{{ comment.name }}</div>
-                                        <div class="user-comment-text">
-                                            {{ comment.message }}
-                                        </div>
-                                    </div>
-                                </div>
-                            {% endfor %}
-                        </div>
+                        {% render_comments product request %}
+                        {% include_bootstrap %}
                     </div>
                 </div>
             </section>

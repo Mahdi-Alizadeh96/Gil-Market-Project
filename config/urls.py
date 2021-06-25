@@ -29,6 +29,7 @@ urlpatterns = [
     path('header', header, name="header"),
     path('footer', footer, name="footer"),
 
+    path('comment/', include('comment.urls')),
     path('admin/', admin.site.urls),
 ]
 

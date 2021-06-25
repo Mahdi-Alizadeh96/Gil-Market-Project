@@ -1,8 +1,7 @@
 from django.db.models import Q
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
-from Gil_Comment.forms import CommentForm
-from Gil_Comment.models import Comments
+
 from Gil_Order.forms import UserNewOrderForm
 from Gil_Product_Brand.models import ProductBrand
 from .models import Product
@@ -44,23 +43,11 @@ def product_detail(request, *args, **kwargs):
     new_order_form = UserNewOrderForm(request.POST or None, initial={'productId': selected_product_id})
 
     product = Product.objects.get_by_id(selected_product_id)
-
     if product is None:
         raise Http404('محصول مورد نظر یافت نشد!')
 
-    comments = product.comments.filter(active=True)
-
-    comment_form = CommentForm(request.POST or None)
-    if comment_form.is_valid():
-        name = comment_form.cleaned_data.get('name')
-        message = comment_form.cleaned_data.get('message')
-        Comments.objects.create(product=product, name=name, message=message)
-        return redirect(f'/products/{product.id}/{product.name_fa}')
-
     context = {
         'product': product,
-        'comments': comments,
-        'comment_form': comment_form,
         'new_order_form': new_order_form
     }
     return render(request, 'products/product_detail.html', context)

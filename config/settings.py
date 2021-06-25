@@ -18,6 +18,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
+LOGIN_URL = "account:login"
+LOGOUT_REDIRECT_URL = "account:login"
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-^3f!!dxg!4d(4=0m$9*mw53ktv_e9%0afxiui$9^_7*qt57!1x'
 
@@ -38,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'django_render_partial',
     'crispy_forms',
+    'comment',
 
     # our applications
     'base_user_account',
@@ -45,7 +49,6 @@ INSTALLED_APPS = [
     'Gil_Products',
     'Gil_Products_Category',
     'Gil_Product_Brand',
-    'Gil_Comment',
     'Gil_Sliders',
     'Gil_Order',
 ]
