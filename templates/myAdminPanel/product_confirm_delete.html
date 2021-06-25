@@ -1,0 +1,23 @@
+{% extends 'myAdminPanel/base.html' %}
+
+{% block title %}{% block title-meta %}
+حذف کالا
+{% endblock %}{% endblock %}
+
+{% block main %}
+
+<div class="col-md-8 text-center mx-auto">
+    <div class="card card-danger">
+      <div class="card-header">
+        <h3 class="card-title mb-0 float-left">حذف کالا</h3>
+      </div>
+      <div class="card-body py-4">
+        <form method="post">{% csrf_token %}
+            <p class="py-2">آیا از حذف کالای «{{object}}» مطمئن هستید؟</p>
+            <input type="submit" value="حذف" class="btn btn-danger">
+            <a href="{% url 'account:home' %}" class="btn btn-secondary">خیر</a>
+        </form>
+      </div>
+</div>
+
+{% endblock %}

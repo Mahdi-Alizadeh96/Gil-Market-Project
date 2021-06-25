@@ -1,0 +1,75 @@
+{% extends 'myAdminPanel/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% block title-meta %}
+افزودن کالا
+{% endblock %}{% endblock %}
+
+{% block main %}
+
+<div class="col-md-12">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title mb-0 float-left">کالای جدید</h3>
+      </div>
+      <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <div class="row">
+        <div class="row">
+            <div class="col-6">
+                {{ form.name_fa|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.name_en|as_crispy_field }}
+            </div>
+            <div class="col-4">
+                {{ form.year|as_crispy_field }}
+            </div>
+            <div class="col-4">
+                {{ form.price|as_crispy_field }}
+            </div>
+            <div class="col-4">
+                {{ form.discount|as_crispy_field }}
+            </div>
+            <div class="col-12">
+                {{ form.description|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.image|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                <br>
+                {{ form.active|as_crispy_field }}
+            </div>
+            <div class="col-3">
+                {{ form.image1|as_crispy_field }}
+            </div>
+            <div class="col-3">
+                {{ form.image2|as_crispy_field }}
+            </div>
+            <div class="col-3">
+                {{ form.image3|as_crispy_field }}
+            </div>
+            <div class="col-3">
+                {{ form.image4|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.brands|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.categories|as_crispy_field }}
+            </div>
+            <div class="col-6">
+                {{ form.attributes|as_crispy_field }}
+            </div>
+        </div>
+            <button class="btn btn-success">ثبت کالا‌</button>
+            {% if request.resolver_match.kwargs.pk %}
+                <a href="{% url 'account:product-delete' request.resolver_match.kwargs.pk %}"
+                class="btn btn-danger">حذف</a>
+            {% endif %}
+        </form>
+      </div>
+    </div>
+</div>
+{% endblock %}

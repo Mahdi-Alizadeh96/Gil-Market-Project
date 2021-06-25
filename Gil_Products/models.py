@@ -1,9 +1,9 @@
 import os
+from django.urls import reverse
 from django.db.models import Q
 from django.db import models
 from Gil_Product_Brand.models import ProductBrand
 from Gil_Products_Category.models import ProductCategory
-from ckeditor_uploader.fields import RichTextUploadingField
 
 
 def get_filename_ext(filepath):
@@ -43,7 +43,7 @@ class Product(models.Model):
     year = models.IntegerField(verbose_name='سال تولید')
     price = models.BigIntegerField(verbose_name='قیمت')
     discount = models.IntegerField(null=True, blank=True, default=0, verbose_name='درصد تخفیف')
-    description = RichTextUploadingField(verbose_name='توضیحات محصول')
+    description = models.TextField(verbose_name='توضیحات محصول')
     image = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='تصویر اصلی')
     image1 = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='1تصویر')
     image2 = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='2تصویر')
@@ -62,6 +62,9 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name_en
+
+    def get_absolute_url(self):
+        return reverse("account:home")
 
     def get_sale(self):
         price = int(self.price * (100 - self.discount) / 100)

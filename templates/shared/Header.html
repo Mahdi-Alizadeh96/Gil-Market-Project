@@ -13,7 +13,6 @@
 
                         <a id="sign-up-link" class="sign-up-link signs-link" href="{% url 'account:register' %}"><span
                                 class="material-icons md-18 icn-org">create</span>ثبت نام</a>
-
                     </div>
                 {% else %}
                     <!-- User panel   -->
@@ -24,10 +23,9 @@
                         <a id="user-link" class="user-link signs-link" href="{% url 'account:user_panel' %}"><span
                                 class="material-icons md-18 icn-org">person_outline</span>{{ firstName }}
                         </a>
+                        
                     </div>
                 {% endif %}
-
-
                 <!-- Search box -->
                 <div class="search-box">
                     <form action="/result/search" method="get">
@@ -39,6 +37,11 @@
                         </div>
                     </form>
                 </div>
+                {% if user.is_superuser or user.is_admin %}
+                    <a id="user-link" class="user-link signs-link" href="{% url 'account:home' %}">
+                        <span class="material-icons md-18 icn-org">home</span>
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>

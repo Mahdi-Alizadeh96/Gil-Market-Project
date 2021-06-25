@@ -1,10 +1,14 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
-
 from base_user_account.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .forms import LoginForm, RegisterForm, EditUserForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from Gil_Products.models import Product
+from .mixins import FieldsMixin, AdminAccessMixin
 
 
 def login_user(request):
@@ -42,7 +46,7 @@ def register(request):
             first_name=first_name, last_name=last_name, phone=phone,
             email=email, address=None, password=password
         )
-        return redirect('/login')
+        return redirect('account:login')
 
     context = {
         'register_form': register_form
@@ -52,10 +56,10 @@ def register(request):
 
 def log_out(request):
     logout(request)
-    return redirect('/login')
+    return redirect('account:login')
 
 
-@login_required(login_url='/login')
+@login_required(login_url='account:login')
 def user_panel(request):
     user_id = request.user.id
     user = User.objects.get(id=user_id)
@@ -63,7 +67,7 @@ def user_panel(request):
     return render(request, 'account/user_panel.html', context)
 
 
-@login_required(login_url='/login')
+@login_required(login_url='account:login')
 def edit_profile(request):
     user_id = request.user.id
     user = User.objects.get(id=user_id)
@@ -90,3 +94,24 @@ def edit_profile(request):
 
     context = {'edit_form': edit_user_form}
     return render(request, 'account/edit_profile.html', context)
+
+
+class AdminHome(AdminAccessMixin, ListView):
+    queryset = Product.objects.all()
+    template_name = 'myAdminPanel/home.html'
+
+
+class ProductCreate(AdminAccessMixin, FieldsMixin, CreateView):
+    model = Product
+    template_name = 'myAdminPanel/product-create-update.html'
+
+
+class ProductUpdate(AdminAccessMixin, FieldsMixin, UpdateView):
+    model = Product
+    template_name = 'myAdminPanel/product-create-update.html'
+
+
+class ProductDelete(AdminAccessMixin,  DeleteView):
+    model = Product
+    success_url = reverse_lazy('account:home')
+    template_name = 'myAdminPanel/product_confirm_delete.html'
