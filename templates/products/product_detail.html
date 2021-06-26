@@ -91,8 +91,10 @@
                                 </tbody>
                             </table>
                         </div>
-                        {% render_comments product request %}
-                        {% include_bootstrap %}
+                        <div id="Comments" class="container tab-pane fade w-100"><br>
+                            {% render_comments product request %}
+                            {% include_bootstrap %}
+                        </div>
                     </div>
                 </div>
             </section>

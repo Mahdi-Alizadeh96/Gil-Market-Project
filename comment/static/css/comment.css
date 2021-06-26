@@ -6,6 +6,10 @@
 .js-comment-content {
     font-size: 1.1rem;
 }
+@font-face {
+    font-family: GanjNamehSans-Regular;
+    src: url(../../fonts/GanjNamehSans-Regular.otf);
+  }
 .js-comment-content>.js-comment-urlhash {
     opacity: 1;
     padding-left: 10px;
@@ -15,7 +19,7 @@
 }
 #comments .bb {
     padding-bottom: 2px;
-    border-bottom: 3px solid #00bc8c;
+    border-bottom: 3px solid #ef5d24;
 }
 #comments .text-wrap {
     word-wrap: break-word;
@@ -37,7 +41,7 @@
     resize: none;
 }
 #comments textarea:focus, #comments textarea:hover {
-    border: 1px solid #00bc8c;
+    border: 1px solid #ef5d24;
     outline: none;
 }
 .form-control:focus::placeholder,
@@ -84,7 +88,7 @@ input#search-input:focus::placeholder {
 .flag-rejected,
 .flag-resolved,
 #comments .user-has-followed {
-    stroke: #00bc8c;
+    stroke: #ef5d24;
 }
 .comment-modal {
     position: fixed;
@@ -206,11 +210,11 @@ input#search-input:focus::placeholder {
 }
 
 .js-comment-content.mb-0 {
-    font-family: Sahel !important;
+    font-family: GanjNamehSans-Regular !important;
 }
 
 .comment-translatable {
-    font-family: Sahel !important;
+    font-family: GanjNamehSans-Regular !important;
     font-size: large;
     font-weight: bold;
 }
