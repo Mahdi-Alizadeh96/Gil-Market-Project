@@ -37,7 +37,7 @@
         {% else %}
             <p class="text-muted {% if comment %}h7{% endif %}">
                 {% trans "ارسال دیدگاه :" %}
-                <a class="text-success" href="{{login_url}}?next={{request.path}}">
+                <a class="text-success" href="{% url 'account:login' %}">
                     <em>{% trans "ورود" %}</em>
                 </a>
             </p>
