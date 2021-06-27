@@ -4,7 +4,7 @@ from django.http import Http404
 class FieldsMixin():
     def dispatch(self, request, *args, **kwargs):
         self.fields = [
-            "name_fa","name_en", "slug", "year",
+            "name_fa","name_en","year",
             "price","discount","description","image",
             "image1","image2","image3","image4","active",
             "categories","brands","attributes"

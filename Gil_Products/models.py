@@ -4,6 +4,8 @@ from django.db.models import Q
 from django.db import models
 from Gil_Product_Brand.models import ProductBrand
 from Gil_Products_Category.models import ProductCategory
+from .utils import unique_slug_generator
+from django.db.models.signals import pre_save
 from django.contrib.contenttypes.fields import GenericRelation
 from comment.models import Comment
 
@@ -77,3 +79,9 @@ class Product(models.Model):
 
     def p_url_name(self):
         return self.name_en.replace('/','-')
+
+def product_pre_save_receiver(sender, instance, *args, **kwargs):
+    if not instance.slug:
+        instance.slug = unique_slug_generator(instance)
+
+pre_save.connect(product_pre_save_receiver, sender=Product)
