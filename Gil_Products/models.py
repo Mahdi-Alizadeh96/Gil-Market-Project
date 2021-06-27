@@ -43,6 +43,7 @@ class ProductManager(models.Manager):
 class Product(models.Model):
     name_fa = models.CharField(max_length=150, verbose_name='نام محصول (فارسی)')
     name_en = models.CharField(max_length=150, verbose_name='نام محصول (انگلیسی)')
+    slug = models.SlugField(max_length=100, unique=True, verbose_name="آدرس محصول")
     year = models.IntegerField(verbose_name='سال تولید')
     price = models.BigIntegerField(verbose_name='قیمت')
     discount = models.IntegerField(null=True, blank=True, default=0, verbose_name='درصد تخفیف')
@@ -73,3 +74,6 @@ class Product(models.Model):
     def get_sale(self):
         price = int(self.price * (100 - self.discount) / 100)
         return price
+
+    def p_url_name(self):
+        return self.name_en.replace('/','-')

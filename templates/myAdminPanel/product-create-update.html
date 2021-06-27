@@ -16,11 +16,14 @@
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
             <div class="row">
         <div class="row">
-            <div class="col-6">
+            <div class="col-4">
                 {{ form.name_fa|as_crispy_field }}
             </div>
-            <div class="col-6">
+            <div class="col-4">
                 {{ form.name_en|as_crispy_field }}
+            </div>
+            <div class="col-4">
+                {{ form.slug|as_crispy_field }}
             </div>
             <div class="col-4">
                 {{ form.year|as_crispy_field }}

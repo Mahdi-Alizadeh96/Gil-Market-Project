@@ -46,7 +46,10 @@ def home_page(request):
     advertise = Advertise.objects.first()
     category_list = ProductCategory.objects.all()
     discount = Product.objects.filter(~Q(discount=0), active=True)
-    random_discount = random.sample(list(discount), 3)
+    try:
+        random_discount = random.sample(list(discount), 3)
+    except:
+        random_discount = None
     context = {
         'categoryList': category_list,
         'discount': random_discount,
