@@ -1283,3 +1283,30 @@ display: -webkit-box;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
+
+.Slider {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+}
+.Slider__link {
+  display: block;
+  width: fit-content;
+  height: fit-content;
+}
+.Slider__link span {
+  font-size: 45px;
+}
+.Slider__counter {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid #cacaca;
+  border-left: 1px solid #cacaca;
+  width: 45px;
+  height: 45px;
+  /* width: fit-content; */
+  text-align: center;
+  font-size: 25px;
+
+}
