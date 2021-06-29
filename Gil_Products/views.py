@@ -15,20 +15,30 @@ def product_list(request, *args, **kwargs):
 
 
 class ProductListByCategory(ListView):
-    template_name = 'products/product_list.html'
+    template_name = 'products/p_category_list.html'
+    paginate_by = 12
 
     def get_queryset(self):
+        global category
         category_name = self.kwargs['category_name']
         category = ProductCategory.objects.filter(name__iexact=category_name).first()
         if category is None:
             raise Http404("صفحه مورد نظر یافت نشد!")
         return Product.objects.get_product_by_category(category_name)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['category'] = category
+        return context
 
 
 class ProductCategoryBrand(ListView):
-    template_name = 'products/product_list.html'
+    template_name = 'products/p_category_brand.html'
+    paginate_by = 12
 
     def get_queryset(self):
+        global brand
+        global category
         brand_name = self.kwargs['brand_name']
         category_name = self.kwargs['category_name']
         brand = ProductBrand.objects.get_by_name(brand_name)
@@ -36,6 +46,12 @@ class ProductCategoryBrand(ListView):
         if brand and category is None:
             raise Http404('صفحه مورد نظر یافت نشد')
         return Product.objects.get_product_by_category_brand(brand_name, category_name)
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['brand'] = brand
+        context['category'] = category
+        return context
 
 
 def product_detail(request, *args, **kwargs):
@@ -54,7 +70,8 @@ def product_detail(request, *args, **kwargs):
 
 
 class SearchProducts(ListView):
-    template_name = 'products/product_list.html'
+    template_name = 'products/search.html'
+    paginate_by = 12
 
     def get_queryset(self):
         request = self.request
@@ -62,10 +79,16 @@ class SearchProducts(ListView):
         if query is not None:
             return Product.objects.search(query)
         return None
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['search'] = self.request.GET.get('q')
+        return context
 
 
 class DiscountView(ListView):
-    template_name = 'products/product_list.html'
+    template_name = 'products/discount.html'
+    paginate_by = 12
 
     def get_queryset(self):
         return Product.objects.filter(~Q(discount=0), active=True)

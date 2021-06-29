@@ -28,7 +28,7 @@
                 {% endif %}
                 <!-- Search box -->
                 <div class="search-box">
-                    <form action="/result/search" method="get">
+                    <form action="{% url 'product:search' %}" method="get">
                         <div class="search-group">
                             <input type="search" class=" search-bar" placeholder="جستجو..." value="{{ request.GET.q }}"
                                    name="q">

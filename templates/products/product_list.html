@@ -81,17 +81,23 @@
                             {% endif %}
                         {% endfor %}
                     </ul>
-                    <div class="Slider">
-                        <a id="sign-in-link" class="Slider__link signs-link" href="#">
-                            <span class="material-icons md-18 icn-org">chevron_right</span>
-                        </a>
-                        <div class="Slider__counter">
-                            1
+                    {% if is_paginated %}
+                        <div class="Slider">
+                            {% if page_obj.has_previous %}
+                            <a id="sign-in-link" class="Slider__link signs-link" href="{% block previous_page_url %}{% endblock %}">
+                                <span class="material-icons md-18 icn-org">chevron_right</span>
+                            </a>
+                            {% endif %}
+                            <div class="Slider__counter">
+                                {{page_obj.number}}
+                            </div>
+                            {% if page_obj.has_next %}
+                            <a id="sign-in-link" class="Slider__link signs-link" href="{% block next_page_url %}{% endblock %}">
+                                <span class="material-icons md-18 icn-org">chevron_left</span>
+                            </a>
+                            {% endif %}
                         </div>
-                        <a id="sign-in-link" class="Slider__link signs-link" href="#">
-                            <span class="material-icons md-18 icn-org">chevron_left</span>
-                        </a>
-                    </div>
+                    {% endif %}
                 </div>
             </section>
         </div>
