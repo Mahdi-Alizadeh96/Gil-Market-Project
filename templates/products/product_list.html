@@ -6,18 +6,19 @@
         <div class="container">
             <section class="result-page">
                 <div class="row mt-3">
-                    <form action="" class="w-100">
+                    <form action="{% block filter %}{% endblock %}" class="w-100">
                         <div class="form-group d-flex form-filter">
                             <div class="col col-sm-3">
                                 <!-- <span class="material-icons md-18 icn-org form-filter-icon">filter_list</span> -->
                                 <span>مرتب سازی بر اساس :</span>
                             </div>
                             <div class="col col-sm-3">
-                                <select class="form-control input-border" name="" id="">
-                                    <option class="vvb" value="">جدیدترین</option>
-                                    <option value="">پرفروش ترین</option>
-                                    <option value="">ارزان ترین</option>
-                                    <option value="">گران ترین</option>
+                                <select class="form-control input-border" name="status" id="">
+                                    <option value="" selected >فیلتر کنید</option>
+                                    <option value="new"  >جدیدترین</option>
+                                    <option value="hit" >پربازدید ترین</option>
+                                    <option value="low" >ارزان ترین</option>
+                                    <option value="high" >گران ترین</option>
                                 </select>
                             </div>
                             <div class="col col-sm-3">

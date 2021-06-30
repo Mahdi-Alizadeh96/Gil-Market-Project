@@ -1,5 +1,9 @@
 {% extends 'products/product_list.html' %}
 
+{block filter}
+    {% url 'product:discount' %}
+{endblock}
+
 {% block previous_page_url %}
     {% url 'product:discount' page_obj.previous_page_number %}
 {% endblock %}

@@ -23,6 +23,10 @@ def upload_image_path(instance, filename):
     return f"products/{final_name}"
 
 
+class IPAddress(models.Model):
+    ip_address = models.GenericIPAddressField(verbose_name='آدرس آی‌پی')
+
+
 class ProductManager(models.Manager):
     def get_by_id(self, product_id):
         qs = self.get_queryset().filter(id=product_id)
@@ -55,11 +59,12 @@ class Product(models.Model):
     image2 = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='2تصویر')
     image3 = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='3تصویر')
     image4 = models.ImageField(upload_to=upload_image_path, null=True, blank=True, verbose_name='4تصویر')
-    active = models.BooleanField(default=False, verbose_name='موجود / ناموجود')
+    active = models.BooleanField(default=True, verbose_name='موجود / ناموجود')
     categories = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, null=True, blank=True, verbose_name="دسته بندی ها")
     brands = models.ForeignKey(ProductBrand, on_delete=models.CASCADE, null=True, blank=True, verbose_name="برندها")
     attributes = models.TextField(verbose_name='ویژگی های محصول', null=True)
     comments = GenericRelation(Comment)
+    hits = models.ManyToManyField(IPAddress, blank=True, related_name='hits', verbose_name='بازدیدها')
 
     objects = ProductManager()
 

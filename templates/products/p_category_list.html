@@ -1,5 +1,9 @@
 {% extends 'products/product_list.html' %}
 
+{block filter}
+    {% url 'product:p_category' category.name %}
+{endblock}
+
 {% block previous_page_url %}
     {% url 'product:p_category' category.name page_obj.previous_page_number %}
 {% endblock %}

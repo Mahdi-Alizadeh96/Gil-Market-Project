@@ -7,9 +7,10 @@ from Gil_Product_Brand.models import ProductBrand
 from .models import Product
 from django.http import Http404
 from Gil_Products_Category.models import ProductCategory
+from django.db.models import Count
 
 
-def product_list(request, *args, **kwargs):
+def product_list(request):
     context = {}
     return render(request, 'products/product_list.html', context)
 
@@ -24,7 +25,18 @@ class ProductListByCategory(ListView):
         category = ProductCategory.objects.filter(name__iexact=category_name).first()
         if category is None:
             raise Http404("صفحه مورد نظر یافت نشد!")
-        return Product.objects.get_product_by_category(category_name)
+        if self.request.GET.get('status'):
+            status_filter = self.request.GET.get('status')
+            if status_filter == "high":
+                return Product.objects.get_product_by_category(category_name).order_by('-price')
+            elif status_filter == "low":
+                return Product.objects.get_product_by_category(category_name).order_by('price')
+            elif status_filter == "new":
+                return Product.objects.get_product_by_category(category_name).order_by('-id')
+            elif status_filter == "hit":
+                return Product.objects.get_product_by_category(category_name).annotate(count=Count('hits')).order_by('-count')
+        else:
+            return Product.objects.get_product_by_category(category_name)
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -45,7 +57,20 @@ class ProductCategoryBrand(ListView):
         category = ProductCategory.objects.filter(name__iexact=category_name).first()
         if brand and category is None:
             raise Http404('صفحه مورد نظر یافت نشد')
-        return Product.objects.get_product_by_category_brand(brand_name, category_name)
+        if self.request.GET.get('status'):
+            status_filter = self.request.GET.get('status')
+            if status_filter == "high":
+                return Product.objects.get_product_by_category_brand(brand_name, category_name).order_by('-price')
+            elif status_filter == "low":
+                return Product.objects.get_product_by_category_brand(brand_name, category_name).order_by('price')
+            elif status_filter == "new":
+                return Product.objects.get_product_by_category_brand(brand_name, category_name).order_by('-id')
+            elif status_filter == "hit":
+                return Product.objects.get_product_by_category_brand(brand_name, category_name).annotate(count=Count('hits')).order_by('-count')
+        else:
+            return Product.objects.get_product_by_category_brand(brand_name, category_name)
+    
+        
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -62,6 +87,10 @@ def product_detail(request, *args, **kwargs):
     if product is None:
         raise Http404('محصول مورد نظر یافت نشد!')
 
+    ip_address = request.user.ip_address
+    if ip_address not in product.hits.all():
+        product.hits.add(ip_address)
+
     context = {
         'product': product,
         'new_order_form': new_order_form
@@ -74,12 +103,12 @@ class SearchProducts(ListView):
     paginate_by = 12
 
     def get_queryset(self):
-        request = self.request
-        query = request.GET.get('q')
+        query = self.request.GET.get('q', '')
         if query is not None:
             return Product.objects.search(query)
-        return None
-    
+        else:    
+            raise Http404('محصول مورد نظر یافت نشد!')
+            
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['search'] = self.request.GET.get('q')
@@ -91,4 +120,15 @@ class DiscountView(ListView):
     paginate_by = 12
 
     def get_queryset(self):
-        return Product.objects.filter(~Q(discount=0), active=True)
+        if self.request.GET.get('status'):
+            status_filter = self.request.GET.get('status')
+            if status_filter == "high":
+                return Product.objects.filter(~Q(discount=0), active=True).order_by('-price')
+            elif status_filter == "low":
+                return Product.objects.filter(~Q(discount=0), active=True).order_by('price')
+            elif status_filter == "new":
+                return Product.objects.filter(~Q(discount=0), active=True).order_by('-id')
+            elif status_filter == "hit":
+                return Product.objects.filter(~Q(discount=0), active=True).annotate(count=Count('hits')).order_by('-count')
+        else:
+            return Product.objects.filter(~Q(discount=0), active=True)

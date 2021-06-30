@@ -1,9 +1,83 @@
-{% extends 'products/product_list.html' %}
+{% extends 'shared/_MainLayout.html' %}
+{% load humanize %}
 
-{% block previous_page_url %}
-    {% url 'product:search' page_obj.previous_page_number %}?q={{search}}
-{% endblock %}
-
-{% block next_page_url %}
-    {% url 'product:search' page_obj.next_page_number %}?q={{search}}
+{% block content %}
+    <main>
+        <div class="container">
+            <section class="result-page">
+                <div style="text-align: center;">
+                    جستجوی : {{search}}
+                </div>
+                <div class="result-page-main-box">
+                    <ul class="results-ul">
+                        {% for product in object_list %}
+                            {% if product.active is True and product.discount is not 0 %}
+                                <li class="result-li available-product-off">
+                                    <a href="{% url 'product:product_detail' product.id product.slug %}" class="result-link">
+                                        <div class="result-one-show">
+                                            <img class="result-img" src="{{ product.image.url }}"
+                                                 alt="">
+                                            <div class="result-product-name">
+                                                {{ product.name_fa }}
+                                            </div>
+                                            <div class="result-product-off">
+                                                <span>{{ product.discount }}%</span>
+                                                <del>{{ product.price|intcomma:False }}</del>
+                                            </div>
+                                            <div class="result-product-price">
+                                                <span>{{ product.get_sale|intcomma:False }}</span><span>تومان</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% elif product.active is True and product.discount is 0 %}
+                                <li class="result-li available-product">
+                                    <a href="{% url 'product:product_detail' product.id product.slug %}" class="result-link">
+                                        <div class="result-one-show">
+                                            <img class="result-img" src="{{ product.image.url }}" alt="">
+                                            <div class="result-product-name">{{ product.name_fa }}</div>
+                                            <div class="result-product-price padd-butt">
+                                                <span>{{ product.get_sale|intcomma:False }}</span><span>تومان</span>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% else %}
+                                <li class="result-li unavailable-product">
+                                    <a href="{% url 'product:product_detail' product.id product.slug %}" class="result-link">
+                                        <div class="result-one-show">
+                                            <img class="result-img" src="{{ product.image.url }}"
+                                                 alt="">
+                                            <div class="result-product-name">{{ product.name_fa }}</div>
+                                            <div class="result-product-off"><span class="mnb2222">ناموجود</span>
+                                                <del></del>
+                                            </div>
+                                            <div class="result-product-price"><span>0</span><span>تومان</span></div>
+                                        </div>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                    {% if is_paginated %}
+                        <div class="Slider">
+                            {% if page_obj.has_previous %}
+                            <a id="sign-in-link" class="Slider__link signs-link" href="{% url 'product:search' page_obj.previous_page_number %}?q={{search}}">
+                                <span class="material-icons md-18 icn-org">chevron_right</span>
+                            </a>
+                            {% endif %}
+                            <div class="Slider__counter">
+                                {{page_obj.number}}
+                            </div>
+                            {% if page_obj.has_next %}
+                            <a id="sign-in-link" class="Slider__link signs-link" href="{% url 'product:search' page_obj.next_page_number %}?q={{search}}">
+                                <span class="material-icons md-18 icn-org">chevron_left</span>
+                            </a>
+                            {% endif %}
+                        </div>
+                    {% endif %}
+                </div>
+            </section>
+        </div>
+    </main>
 {% endblock %}
