@@ -6,6 +6,10 @@ from Gil_Products.models import Product
 from .forms import UserNewOrderForm
 from .models import Order, OrderDetail
 
+from django.http import HttpResponse
+from django.shortcuts import redirect
+from zeep import Client
+import time
 
 @login_required(login_url='/login')
 def add_user_order(request):
@@ -50,3 +54,48 @@ def remove_order_detail(request, *args, **kwargs):
             order_detail.delete()
         return redirect('/open-order')
     raise Http404
+
+
+
+MERCHANT = 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX'
+total_price = 0
+description = "توضیحات مربوط به تراکنش را در این قسمت وارد کنید"  # Required
+email = 'email@example.com'  # Optional
+mobile = '09123456789'  # Optional
+
+client = Client('https://www.zarinpal.com/pg/services/WebGate/wsdl')
+CallbackURL = 'http://localhost:8000/verify' # Important: need to edit for realy server.
+
+def send_request(request, *args, **kwargs):
+    total_price = 0
+    open_order = Order.objects.filter(is_paid=False, owner_id=request.user.id).first()
+    if open_order is not None:
+        total_price = open_order.get_total_price()
+        result = client.service.PaymentRequest(
+            MERCHANT, total_price, description, email, mobile, f"{CallbackURL}/{open_order.id}"
+            )
+        if result.Status == 100:
+            return redirect('https://www.zarinpal.com/pg/StartPay/' + str(result.Authority))
+        else:
+            return HttpResponse('Error code: ' + str(result.Status))
+    raise Http404()
+
+
+    
+
+def verify(request, *args, **kwargs):
+    order_id = kwargs.get('order_id')
+    if request.GET.get('Status') == 'OK':
+        result = client.service.PaymentVerification(MERCHANT, request.GET['Authority'], total_price)
+        if result.Status == 100:
+            user_order = Order.objects.get_queryset().get(id=order_id)
+            user_order.is_paid = True
+            user_order.payment_date = time.time()
+            user_order.save()
+            return HttpResponse('Transaction success.\nRefID: ' + str(result.RefID))
+        elif result.Status == 101:
+            return HttpResponse('Transaction submitted : ' + str(result.Status))
+        else:
+            return HttpResponse('Transaction failed.\nStatus: ' + str(result.Status))
+    else:
+        return HttpResponse('Transaction failed or canceled by user')

@@ -9,7 +9,7 @@ from .views import (
     AdminHome,
     ProductCreate,
     ProductUpdate,
-    ProductDelete
+    ProductDelete,
 )
 
 app_name = 'account'

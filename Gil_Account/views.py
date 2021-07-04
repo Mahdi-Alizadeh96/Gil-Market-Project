@@ -115,3 +115,4 @@ class ProductDelete(AdminAccessMixin,  DeleteView):
     model = Product
     success_url = reverse_lazy('account:home')
     template_name = 'myAdminPanel/product_confirm_delete.html'
+
