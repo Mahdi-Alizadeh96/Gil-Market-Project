@@ -19,10 +19,10 @@
                                 <legend>
                                     <a href="{% url 'product:p_category_brand' brand.name category.name %}">{{ category.title }}</a>
                                 </legend>
-                                <div class="result-page-main-box">
+                                <div class="brand-page-main-box">
                                     <ul class="results-ul">
                                     <!-- all styles of products in result page will appear here (Random)-->
-                                        {% for p in category.product.all|slice:":3" reversed %}
+                                        {% for p in category.product.all|slice:":4" reversed %}
                                             {% if p in brand.product.all %}
                                                     {% if p.active is True and p.discount is not 0 %}
                                                         <li class="result-li available-product-off">

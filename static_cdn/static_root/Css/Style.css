@@ -719,7 +719,7 @@ display: -webkit-box;
 }
 .brand-group-main-box {
   padding-bottom: 3%;
-  border-bottom: 1px solid #80808041;
+  /* border-bottom: 1px solid #80808041; */
 }
 .brand-container h2 {
   height: 100%;
@@ -729,10 +729,14 @@ display: -webkit-box;
 }
 .brand-container  p {
   text-align: right;
-  margin-top: 2%;
+  /* margin-top: 2%; */
   word-spacing: 2px;
   text-indent: 10px;
   line-height: 34px;
+}
+.brand-page-main-box {
+  padding-top: 2%;
+  min-height: 400px;
 }
 .brand-product-divide {
   margin-top: 3%;
@@ -751,7 +755,7 @@ display: -webkit-box;
   padding: 3px;
 }
 .brand-product-divide div{
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
   align-content: center;
