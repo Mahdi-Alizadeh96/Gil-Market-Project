@@ -1,4 +1,5 @@
 {% extends 'shared/_MainLayout.html' %}
+{% load humanize %}
 
 {% block content %}
     <main>
@@ -15,12 +16,62 @@
                     {% for category in brand.categories.all %}
                         <div class="brand-product-divide">
                             <fieldset>
-                                <legend><a href="{% url 'product:p_category_brand' brand.name category.name %}">{{ category.title }}</a>
+                                <legend>
+                                    <a href="{% url 'product:p_category_brand' brand.name category.name %}">{{ category.title }}</a>
                                 </legend>
-                                <div>
-                                   {{product}}
+                                <div class="result-page-main-box">
+                                    <ul class="results-ul">
                                     <!-- all styles of products in result page will appear here (Random)-->
-
+                                        {% for p in category.product.all|slice:":3" reversed %}
+                                            {% if p in brand.product.all %}
+                                                    {% if p.active is True and p.discount is not 0 %}
+                                                        <li class="result-li available-product-off">
+                                                            <a href="{% url 'product:product_detail' p.id p.slug %}" class="result-link">
+                                                                <div class="result-one-show">
+                                                                    <img class="result-img" src="{{ p.image.url }}" alt="{{ p.image.title }">
+                                                                    <div class="result-product-name">
+                                                                        {{ p.name_fa }}
+                                                                    </div>
+                                                                    <div class="result-product-off">
+                                                                        <span>{{ p.discount }}%</span>
+                                                                        <del>{{ p.price|intcomma:False }}</del>
+                                                                    </div>
+                                                                    <div class="result-product-price">
+                                                                        <span>{{ p.get_sale|intcomma:False }}</span><span>تومان</span>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                    {% elif p.active is True and p.discount is 0 %}
+                                                        <li class="result-li available-product">
+                                                            <a href="{% url 'product:product_detail' p.id p.slug %}" class="result-link">
+                                                                <div class="result-one-show">
+                                                                    <img class="result-img" src="{{ p.image.url }}" alt="">
+                                                                    <div class="result-product-name">{{ p.name_fa }}</div>
+                                                                    <div class="result-product-price padd-butt">
+                                                                        <span>{{ p.get_sale|intcomma:False }}</span><span>تومان</span>
+                                                                    </div>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                    {% else %}
+                                                        <li class="result-li unavailable-product">
+                                                            <a href="{% url 'product:product_detail' p.id p.slug %}" class="result-link">
+                                                                <div class="result-one-show">
+                                                                    <img class="result-img" src="{{ p.image.url }}"
+                                                                        alt="">
+                                                                    <div class="result-product-name">{{ p.name_fa }}</div>
+                                                                    <div class="result-product-off"><span class="mnb2222">ناموجود</span>
+                                                                        <del></del>
+                                                                    </div>
+                                                                    <div class="result-product-price"><span>0</span><span>تومان</span></div>
+                                                                </div>
+                                                            </a>
+                                                        </li>
+                                                    {% endif %}
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
                                 </div>
                             </fieldset>
                         </div>
