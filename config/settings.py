@@ -28,6 +28,7 @@ SECRET_KEY = 'django-insecure-^3f!!dxg!4d(4=0m$9*mw53ktv_e9%0afxiui$9^_7*qt57!1x
 DEBUG = True
 
 ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['gilmarketstore.ir', 'www.gilmarketstore.ir']
 
 # Application definition
 
@@ -97,6 +98,21 @@ DATABASES = {
     }
 }
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'mysql.connector.django',
+#         'NAME': 'gepshtji_db_gil',
+#         'USER': 'gepshtji_gil_ali',
+#         'PASSWORD': '-BQf3s;u9spt',
+#         'HOST': 'localhost',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'autocommit': True,
+#             'sql_mode': 'STRICT_ALL_TABLES'
+#         }
+#     }
+# # 
+
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -133,6 +149,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 # STATIC_ROOT = BASE_DIR / "static_cdn" / "static_root"
+# STATIC_ROOT = '/home/gepshtji/public_html/static/'
 
 STATICFILES_DIRS = [
     BASE_DIR / "static_cdn/static_root"
@@ -140,6 +157,8 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "static_cdn" / "media_root"
+# MEDIA_ROOT = '/home/gepshtji/public_html/media/'
+
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

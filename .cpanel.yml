@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/gepshtji/public_html/Gil
+    - /bin/cp * $DEPLOYPATH
