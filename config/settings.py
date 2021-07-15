@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django_render_partial',
     'crispy_forms',
     'comment',
+    'ckeditor',
+    'ckeditor_uploader',
 
     # our applications
     'base_user_account',
@@ -159,6 +161,12 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / "static_cdn" / "media_root"
 # MEDIA_ROOT = '/home/gepshtji/public_html/media/'
 
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Advanced',
+    },
+}
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

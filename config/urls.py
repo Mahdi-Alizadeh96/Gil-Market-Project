@@ -30,6 +30,7 @@ urlpatterns = [
     path('footer', footer, name="footer"),
 
     path('comment/', include('comment.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('admin/', admin.site.urls),
 ]
 
