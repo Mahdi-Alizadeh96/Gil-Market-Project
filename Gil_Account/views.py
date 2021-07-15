@@ -4,10 +4,10 @@ from base_user_account.models import User
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 from .forms import LoginForm, RegisterForm, EditUserForm
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
 from Gil_Products.models import Product
+from Gil_Order.models import Order
 from .mixins import FieldsMixin, AdminAccessMixin
 
 
@@ -116,3 +116,14 @@ class ProductDelete(AdminAccessMixin,  DeleteView):
     success_url = reverse_lazy('account:home')
     template_name = 'myAdminPanel/product_confirm_delete.html'
 
+
+class OrderView(AdminAccessMixin, ListView):
+    queryset = Order.objects.filter(is_paid=True)
+    template_name = 'myAdminPanel/order.html'
+
+
+class OrderUpdate(AdminAccessMixin, UpdateView):
+    model = Order
+    fields = ['is_read']
+    success_url = reverse_lazy('account:order')
+    template_name = 'myAdminPanel/order_update.html'

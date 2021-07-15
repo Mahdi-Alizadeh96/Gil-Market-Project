@@ -8,6 +8,7 @@ class Order(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='نام خریدار')
     is_paid = models.BooleanField(verbose_name='پرداخت شده / نشده')
     payment_date = models.DateTimeField(blank=True, null=True, verbose_name='تاریخ پرداخت')
+    is_read = models.BooleanField(default=False, verbose_name='خوانده شده / نشده')
 
     class Meta:
         verbose_name = 'سبد خرید'

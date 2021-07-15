@@ -1,0 +1,29 @@
+{% extends 'myAdminPanel/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% block title-meta %}
+بررسی سبد خرید
+{% endblock %}{% endblock %}
+
+{% block main %}
+
+<div class="col-md-8">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title mb-0 float-left">بررسی سبد خرید</h3>
+      </div>
+      <div class="card-body">
+        <form method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <div class="row">
+        <div class="row">
+            
+            <div class="col-4">
+                {{ form.is_read|as_crispy_field }}
+            </div>
+        </div>
+            <button class="btn btn-success">ثبت</button>
+        </form>
+      </div>
+    </div>
+</div>
+{% endblock %}
