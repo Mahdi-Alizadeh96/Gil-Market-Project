@@ -1,0 +1,33 @@
+{% extends 'myAdminPanel/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}{% block title-meta %}
+جزئیات سبد خرید ''{{order.owner}}''
+{% endblock %}{% endblock %}
+
+{% block main %}
+
+<div class="col-md-8">
+    <div class="card card-primary">
+      <div class="card-header">
+        <h3 class="card-title mb-0 float-left">جزئیات سبد</h3>
+      </div>
+      <div class="card-body">
+        <div class="row">
+            <div class="col-12">
+                {% for detail in order_detail %}
+                   <p>{{detail.product.name_fa}}</p>
+                   <p>{{detail.product.name_en}}</p>
+                   <img style="width: 200px; height: 200px;" src="{{detail.product.image.url}}" alt="{{detail.product.image.title}}">
+                {% endfor %}
+            </div>
+            <div class="col-12">
+                <p>
+                    آدرس : {{order.owner.address}}
+                </p>
+            </div>
+            <a href="{% url 'account:order'%}" class="btn btn-primary">صفحه قبلی</a>
+      </div>
+    </div>
+</div>
+{% endblock %}

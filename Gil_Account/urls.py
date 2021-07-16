@@ -12,6 +12,7 @@ from .views import (
     ProductDelete,
     OrderView,
     OrderUpdate,
+    OrderDetailView
 )
 
 app_name = 'account'
@@ -28,4 +29,5 @@ urlpatterns = [
     path('account/product/delete/<int:pk>', ProductDelete.as_view(), name='product-delete'),
     path('account/order', OrderView.as_view(), name='order'),
     path('account/order/update/<int:pk>', OrderUpdate.as_view(), name='order-update'),
+    path('account/order-detail/<int:pk>', OrderDetailView.as_view(), name='order-detail'),
 ]

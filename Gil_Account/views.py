@@ -1,11 +1,11 @@
 from django.contrib.auth.decorators import login_required
 from django.http import Http404
 from base_user_account.models import User
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
 from .forms import LoginForm, RegisterForm, EditUserForm
 from django.urls import reverse_lazy
-from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView, DetailView
 from Gil_Products.models import Product
 from Gil_Order.models import Order
 from .mixins import FieldsMixin, AdminAccessMixin
@@ -127,3 +127,18 @@ class OrderUpdate(AdminAccessMixin, UpdateView):
     fields = ['is_read']
     success_url = reverse_lazy('account:order')
     template_name = 'myAdminPanel/order_update.html'
+
+
+class OrderDetailView(AdminAccessMixin, ListView):
+    template_name = 'myAdminPanel/order_detail.html'
+
+    def get_queryset(self):
+        global order
+        pk = self.kwargs.get('pk')
+        order = get_object_or_404(Order.objects.filter(is_paid=True, pk=pk))
+        
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['order'] = order
+        context['order_detail'] = order.orderdetail_set.all()
+        return context

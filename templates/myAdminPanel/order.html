@@ -22,7 +22,7 @@
                     <tbody>
                         {% for order in object_list %}
                         <tr>
-                            <td>{{order.owner}}</td>
+                            <td><a href="{% url 'account:order-detail' order.pk %}">{{order.owner}}</a></td>
                             <td>{{order.payment_date}}</td>
                             <td>
                                 {% if order.is_read %}
