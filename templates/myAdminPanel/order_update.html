@@ -14,9 +14,9 @@
       </div>
       <div class="card-body">
         <form method="POST" enctype="multipart/form-data">{% csrf_token %}
-            <div class="row">
+            <div class="row" style="justify-content: space-around;align-items: baseline;">
         <div class="row">
-            <div class="col-4">
+            <div class="col-12">
                 {{ form.is_read|as_crispy_field }}
             </div>
         </div>
