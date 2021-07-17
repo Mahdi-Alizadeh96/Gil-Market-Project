@@ -141,4 +141,5 @@ class OrderDetailView(AdminAccessMixin, ListView):
         context = super().get_context_data(**kwargs)
         context['order'] = order
         context['order_detail'] = order.orderdetail_set.all()
+        context['total'] = order.get_total_price()
         return context

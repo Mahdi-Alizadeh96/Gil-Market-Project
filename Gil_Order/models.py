@@ -2,7 +2,7 @@ from django.db import models
 
 from Gil_Products.models import Product
 from base_user_account.models import User
-
+from extensions.utils import jalali_converter
 
 class Order(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='نام خریدار')
@@ -22,6 +22,10 @@ class Order(models.Model):
         for detail in self.orderdetail_set.all():
             total += detail.product.get_sale()
         return total
+    
+    def jpayment_date(self):
+        return jalali_converter(self.payment_date)
+    jpayment_date.short_description = 'تاریخ پرداخت'
 
 
 class OrderDetail(models.Model):

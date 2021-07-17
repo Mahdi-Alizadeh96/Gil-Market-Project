@@ -1,5 +1,5 @@
 {% extends 'myAdminPanel/base.html' %}
-{% load crispy_forms_tags %}
+{% load humanize %}
 
 {% block title %}{% block title-meta %}
 جزئیات سبد خرید ''{{order.owner}}''
@@ -21,21 +21,21 @@
                     <div class="order-box__name col-md-4">
                       <p>{{detail.product.name_fa}}</p>
                       <p>{{detail.product.name_en}}</p>
-                      <a href="">مشاهده محصول</a>
+                      <a href="{% url 'product:product_detail' detail.product.id detail.product.slug %}">مشاهده محصول</a>
                     </div>
                     <div class="order-box__image col-md-4">
                       <img style="width: 200px; height: 200px;" src="{{detail.product.image.url}}" alt="{{detail.product.image.title}}">
                     </div>
                   </div>
                   <div class="row order-box__price">
-                    <p>قیمت : <span>35000</span></p>
+                    <p>قیمت : <span>{{detail.product.get_sale|intcomma:False}} تومان</span></p>
                   </div>
                 </div>
                 {% endfor %}
             </div>
             <div class="col-12 sum-all-order">
               <div class="um-all-order__p">
-                <p>جمع کل (تومان): <span>65000</span></p>
+                <p>جمع کل (تومان): <span>{{total|intcomma:False}}</span></p>
               </div>
                 <p>
                     آدرس : {{order.owner.address}}

@@ -28,7 +28,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     first_name = models.CharField(max_length=50, verbose_name='نام')
     last_name = models.CharField(max_length=50, verbose_name='نام خانوادگی')
-    email = models.EmailField(null=True, unique=True, blank=True, verbose_name='ایمیل')
+    email = models.EmailField(null=True, blank=True, verbose_name='ایمیل')
     phone = models.CharField(max_length=15, unique=True, verbose_name='شماره تلفن')
     address = models.CharField(max_length=350, null=True, blank=True, verbose_name='آدرس')
     is_superuser = models.BooleanField(default=False, verbose_name='سوپر ادمین')
