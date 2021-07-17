@@ -68,3 +68,24 @@ body {
         margin-right: 0;
     }
 }
+.order-box {
+    border-bottom: 1px solid gray;
+    margin-bottom: 15px;
+}
+.order-box__name{
+    align-self: center;
+}
+.order-box__price {
+    font-weight: 700;
+}
+.back-page {
+    display: flex;
+    justify-content: flex-end
+}
+.um-all-order__p {
+    font-size: 20px;
+    font-weight: 700;
+}
+.order-box__justify {
+    justify-content: space-between;
+}
